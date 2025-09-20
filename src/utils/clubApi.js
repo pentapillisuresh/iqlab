@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'http://localhost:5000/api/clubs';
+const API_BASE_URL = 'https://iqlab-backend.onrender.com/api/clubs';
 
 // Get all categories
 export const fetchCategories = async () => {
@@ -46,7 +46,7 @@ export const addSubfield = async (categoryId, subfieldData, token) => {
     };
 
     const response = await axios.post(
-      `${API_BASE_URL}/subfields/${categoryId}`, 
+      `${API_BASE_URL}/subfields/${categoryId}`,
       formData,
       { headers }
     );

@@ -19,15 +19,15 @@ const AdminDashboard = () => {
       try {
         const headers = getAuthHeaders();
 
-        const isoRes = await axios.get("http://localhost:5000/api/iso/users", {
+        const isoRes = await axios.get("https://iqlab-backend.onrender.com/api/iso/users", {
           headers,
         });
 
-        const clubRes = await axios.get("http://localhost:5000/api/clubs/users", {
+        const clubRes = await axios.get("https://iqlab-backend.onrender.com/api/clubs/users", {
           headers,
         });
 
-        const careerRes = await axios.get("http://localhost:5000/api/career/users", {
+        const careerRes = await axios.get("https://iqlab-backend.onrender.com/api/career/users", {
           headers,
         });
 

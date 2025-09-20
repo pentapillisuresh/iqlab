@@ -18,7 +18,7 @@ const ClubRegistrationForm = ({ onSuccess }) => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/clubs/categories");
+        const res = await fetch("https://iqlab-backend.onrender.com/api/clubs/categories");
         const data = await res.json();
         setCategories(data);
       } catch (err) {
@@ -38,7 +38,7 @@ const ClubRegistrationForm = ({ onSuccess }) => {
       setLoadingSubs(true);
       try {
         const res = await fetch(
-          `http://localhost:5000/api/clubs/subcategories?categoryId=${formData.categoryId}`
+          `https://iqlab-backend.onrender.com/api/clubs/subcategories?categoryId=${formData.categoryId}`
         );
         const data = await res.json();
         setSubCategories(data);
@@ -58,7 +58,7 @@ const ClubRegistrationForm = ({ onSuccess }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch("http://localhost:5000/api/clubs/register", {
+      const res = await fetch("https://iqlab-backend.onrender.com/api/clubs/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
@@ -177,7 +177,7 @@ const ClubRegistrationForm = ({ onSuccess }) => {
                   <p className="font-bold text-indigo-600">₹{s.amount}</p>
                   {s.image && (
                     <img
-                      src={`http://localhost:5000${s.image}`}
+                      src={`https://iqlab-backend.onrender.com${s.image}`}
                       alt={s.name}
                       className="w-full h-40 object-cover rounded-md"
                     />
