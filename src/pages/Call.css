@@ -1,0 +1,27 @@
+.call-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #25d366; /* WhatsApp green */
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  z-index: 999;
+}
+
+.call-button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+.call-icon {
+  width: 28px;
+  height: 28px;
+  fill: white;
+}
