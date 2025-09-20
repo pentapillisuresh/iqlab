@@ -1,7 +1,10 @@
 import React from 'react';
 import { Shield, Users, Briefcase, Menu, X, Home } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const Sidebar = ({ activeTab, sidebarOpen, setSidebarOpen }) => {
+  const navigate = useNavigate();
+
   const handleNavigation = (tab) => {
     const routes = {
       dashboard: '/admin/dashboard',
@@ -10,7 +13,7 @@ const Sidebar = ({ activeTab, sidebarOpen, setSidebarOpen }) => {
       career: '/admin/career',
     };
     
-    window.location.href = routes[tab];
+    navigate(routes[tab]); // ✅ SPA navigation (no reload)
   };
 
   return (
@@ -39,7 +42,7 @@ const Sidebar = ({ activeTab, sidebarOpen, setSidebarOpen }) => {
           <Home className="h-5 w-5 mr-2" />
           {sidebarOpen && 'Dashboard Overview'}
         </button>
-        
+
         <button
           onClick={() => handleNavigation('iso')}
           className={`w-full flex items-center px-4 py-3 text-sm font-medium transition-colors ${
@@ -51,7 +54,7 @@ const Sidebar = ({ activeTab, sidebarOpen, setSidebarOpen }) => {
           <Shield className="h-5 w-5 mr-2" />
           {sidebarOpen && 'ISO Certificates'}
         </button>
-        
+
         <button
           onClick={() => handleNavigation('club')}
           className={`w-full flex items-center px-4 py-3 text-sm font-medium transition-colors ${
@@ -63,7 +66,7 @@ const Sidebar = ({ activeTab, sidebarOpen, setSidebarOpen }) => {
           <Users className="h-5 w-5 mr-2" />
           {sidebarOpen && 'Club Members'}
         </button>
-        
+
         <button
           onClick={() => handleNavigation('career')}
           className={`w-full flex items-center px-4 py-3 text-sm font-medium transition-colors ${
