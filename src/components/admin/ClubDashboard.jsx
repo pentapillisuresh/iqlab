@@ -31,7 +31,7 @@ const ClubDashboard = () => {
     name: "",
     amount: 0,
     description: "",
-    image: null,
+    imageUrl: null,
     imagePreview: null
   });
   const [activeCategory, setActiveCategory] = useState("");
@@ -267,13 +267,13 @@ const ClubDashboard = () => {
     // This would be replaced with actual API call to register club user
     const newClub = {
       id: Date.now(),
-      name: "New Club Member",
-      phone: "0000000000",
-      email: "member@example.com",
-      address: "Address not provided",
-      registeredAt: new Date().toISOString().split("T")[0],
-      paymentStatus: "pending",
-      amount: 0,
+      // name: "New Club Member",
+      // phone: "0000000000",
+      // email: "member@example.com",
+      // address: "Address not provided",
+      // registeredAt: new Date().toISOString().split("T")[0],
+      // paymentStatus: "pending",
+      // amount: 0,
       selectedCategories: Array.from(clubForm.selectedCategories),
       categorySubfields: clubForm.categorySubfields
     };

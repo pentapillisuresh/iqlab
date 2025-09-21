@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'https://iqlab-backend.onrender.com/api/clubs';
+const API_BASE_URL = 'http://localhost:5000/api/clubs';
 
 // Get all categories
 export const fetchCategories = async () => {
@@ -35,7 +35,7 @@ export const addSubfield = async (categoryId, subfieldData, token) => {
     if (subfieldData.image && typeof subfieldData.image !== 'string') {
       formData.append('image', subfieldData.image);
     }
-
+    console.log('Submitting subfield data formdata:', formData);
     // ✅ Debug log
     for (let [key, value] of formData.entries()) {
       console.log(key, value);

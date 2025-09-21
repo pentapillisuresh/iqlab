@@ -32,7 +32,7 @@ const UserTable = ({
             className="flex items-center px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
           >
             <Plus className="h-4 w-4 mr-2" />
-            Add Club Member
+            Add Club activity
           </button>
         )}
       </div>
