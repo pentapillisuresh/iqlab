@@ -105,15 +105,14 @@ const Testimonials = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-12"
         >
-          <span className="font-semibold text-sm mb-3 block text-blue-800">
+          {/* <span className="font-semibold text-sm mb-3 block text-blue-800">
             Student & Parent Voices
-          </span>
+          </span> */}
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
             What People Say About Us
           </h2>
           <p className="text-lg max-w-3xl mx-auto text-blue-700">
-            Real experiences from students and parents who discovered clarity
-            with Lakshya Arthi programs.
+            Real experiences from the clients who discovered clarity.
           </p>
         </motion.div>
 

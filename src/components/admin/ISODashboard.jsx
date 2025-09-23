@@ -19,7 +19,7 @@ const ISODashboard = () => {
     const fetchIsoUsers = async () => {
       try {
         const headers = getAuthHeaders();
-        const response = await axios.get("http://localhost:5000/api/iso/users", {
+        const response = await axios.get("https://iqlab-backend.onrender.com/api/iso/users", {
           headers,
         });
         setIsoUsers(response.data || []);

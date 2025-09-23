@@ -27,7 +27,6 @@ const Contact = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('Form submitted:', formData);
-    // Handle form submission here
     alert('Thank you for your interest! We will get back to you soon.');
     setFormData({
       name: '',
@@ -81,21 +80,26 @@ const Contact = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-teal-50">
-      {/* Hero Section */}
-      <div className="relative overflow-hidden bg-gradient-to-r from-teal-600 to-blue-600 py-16">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <h1 className="text-3xl md:text-4xl font-bold text-white mb-4">
+      {/* Banner Section */}
+      <div className="relative h-64 md:h-80 lg:h-96 w-full">
+        <img
+          src="https://images.unsplash.com/photo-1525182008055-f88b95ff7980?auto=format&fit=crop&w=1500&q=80"
+          alt="Contact Us"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center">
+          <div className="text-center text-white px-4">
+            <h1 className="text-3xl md:text-4xl font-bold mb-3">
               Get in <span className="text-yellow-300">Touch</span>
             </h1>
-            <p className="text-lg md:text-xl text-blue-100 max-w-2xl mx-auto">
-              Ready to join our community? Have questions? We'd love to hear from you and help you find the perfect club to call home.
+            <p className="max-w-2xl mx-auto text-base md:text-lg opacity-90">
+              Have questions? Ready to join our community? Let’s connect and help you find your perfect club.
             </p>
           </div>
         </div>
-        <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-blue-50 to-transparent"></div>
       </div>
 
+      {/* Content Section */}
       <div className="py-8 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
         <div className="grid lg:grid-cols-3 gap-6">
           {/* Contact Form */}

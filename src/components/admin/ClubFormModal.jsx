@@ -173,7 +173,7 @@ const ClubFormModal = ({
                                   src={
                                     subField.imagePreview ||
                                     (typeof subField.image === "string"
-                                      ? `http://localhost:5000${subField.image}`
+                                      ? `https://iqlab-backend.onrender.com${subField.image}`
                                       : URL.createObjectURL(subField.image))
                                   }
                                   alt={subField.name}
