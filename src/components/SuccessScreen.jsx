@@ -10,7 +10,7 @@ const SuccessScreen = ({ service, onReset }) => {
         </div>
         <h2 className="text-2xl font-bold text-gray-900 mb-4">Registration Successful!</h2>
         <p className="text-gray-600 mb-6">
-          Thank you for registering for {service.title}. We will contact you soon with further details.
+          Thank you for registering for {service.title}. <b>IQ LABS</b> will contact you soon with further details.
         </p>
         <button
           onClick={onReset}

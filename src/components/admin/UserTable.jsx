@@ -1,5 +1,5 @@
 import React from 'react';
-import { Plus, Eye, Edit, Trash2, CheckCircle } from 'lucide-react';
+import { Plus, Eye, Edit, Trash2, CheckCircle, FileDown } from 'lucide-react';
 
 const UserTable = ({
   serviceType,
@@ -53,7 +53,7 @@ const UserTable = ({
                   Email
                 </th>
 
-                {/* ✅ Show only for ISO */}
+                {/* ISO only */}
                 {serviceType === 'iso' && (
                   <>
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
@@ -72,14 +72,19 @@ const UserTable = ({
                   Payment Status
                 </th>
 
-                {/* ✅ Show only for Career */}
+                {/* Career only */}
                 {serviceType === 'career' && (
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
-                    Result Status
-                  </th>
+                  <>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
+                      Result Status
+                    </th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
+                      Result PDF
+                    </th>
+                  </>
                 )}
 
-                {/* ✅ Show only for Club */}
+                {/* Club only */}
                 {serviceType === 'club' && (
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
                     Category & Subcategory
@@ -125,7 +130,7 @@ const UserTable = ({
                       {user.email}
                     </td>
 
-                    {/* ✅ Render only for ISO */}
+                    {/* ISO */}
                     {serviceType === 'iso' && (
                       <>
                         <td className="px-6 py-4 text-sm text-gray-500">
@@ -140,78 +145,90 @@ const UserTable = ({
                     <td className="px-6 py-4 text-sm text-gray-500">
                       {user.createdAt
                         ? new Date(user.createdAt).toLocaleDateString('en-IN', {
-                          day: '2-digit',
-                          month: 'short',
-                          year: 'numeric',
-                        })
+                            day: '2-digit',
+                            month: 'short',
+                            year: 'numeric',
+                          })
                         : 'N/A'}
                     </td>
 
                     <td className="px-6 py-4">
                       <span
-                        className={`px-2 py-1 text-xs font-semibold rounded-full ${user.paymentStatus === 'completed'
+                        className={`px-2 py-1 text-xs font-semibold rounded-full ${
+                          user.paymentStatus === 'completed'
                             ? 'bg-green-100 text-green-800'
                             : 'bg-yellow-100 text-yellow-800'
-                          }`}
+                        }`}
                       >
                         {user.paymentStatus || 'pending'}
                       </span>
                     </td>
 
-                    {/* ✅ Career Result */}
+                    {/* Career Result */}
                     {serviceType === 'career' && (
-                      <td className="px-6 py-4">
-                        <div className="flex items-center space-x-2">
-                          <select
-                            value={
-                              emailStatus[user._id] ||
-                              user.resultStatus ||
-                              'pending'
-                            }
-                            onChange={(e) => {
-                              if (e.target.value === 'send') {
-                                onSendResult(user._id);
+                      <>
+                        <td className="px-6 py-4">
+                          <div className="flex items-center space-x-2">
+                            <select
+                              value={
+                                emailStatus[user._id] ||
+                                user.resultStatus ||
+                                'pending'
                               }
-                            }}
-                            className="px-2 py-1 text-xs border border-gray-300 rounded"
-                          >
-                            <option value="pending">Pending</option>
-                            <option value="send">Send Result</option>
-                            <option value="sent">Sent</option>
-                          </select>
-                          {emailStatus[user._id] === 'sent' && (
-                            <CheckCircle className="h-4 w-4 text-green-500" />
+                              onChange={(e) => {
+                                if (e.target.value === 'send') {
+                                  onSendResult(user._id);
+                                }
+                              }}
+                              className="px-2 py-1 text-xs border border-gray-300 rounded"
+                            >
+                              <option value="pending">Pending</option>
+                              <option value="send">Send Result</option>
+                              <option value="sent">Sent</option>
+                            </select>
+                            {emailStatus[user._id] === 'sent' && (
+                              <CheckCircle className="h-4 w-4 text-green-500" />
+                            )}
+                          </div>
+                        </td>
+                        <td className="px-6 py-4 text-sm">
+                          {user.resultPdf ? (
+                            <a
+                              href={user.resultPdf}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="flex items-center text-blue-600 hover:text-blue-800"
+                            >
+                              <FileDown className="h-4 w-4 mr-1" />
+                              Download
+                            </a>
+                          ) : (
+                            <span className="text-gray-400 text-xs">
+                              Not Available
+                            </span>
                           )}
-                        </div>
-                      </td>
+                        </td>
+                      </>
                     )}
 
-                    {/* ✅ Club Category + Subfield */}
-                    {/* ✅ Club Category + Subfield */}
-                    {/* ✅ Club Category + Subfield (Stacked) */}
-                    {/* ✅ Club Category + Subfield (Clean Stacked Labels) */}
+                    {/* Club */}
                     {serviceType === 'club' && (
                       <td className="px-6 py-4 text-sm text-gray-500 align-top">
                         <div className="flex flex-col items-start space-y-1">
-                          {/* Category */}
                           {user.category?.name && (
                             <span className="px-2 py-0.5 text-xs font-medium bg-blue-100 text-blue-800 rounded-md">
                               {user.category.name}
                             </span>
                           )}
-
-                          {/* Subcategory */}
-                          {user.subfield?.name && user.subfield.name !== 'N/A' && (
-                            <span className="px-2 py-0.5 text-xs font-medium bg-green-100 text-green-800 rounded-md">
-                              {user.subfield.name}
-                            </span>
-                          )}
+                          {user.subfield?.name &&
+                            user.subfield.name !== 'N/A' && (
+                              <span className="px-2 py-0.5 text-xs font-medium bg-green-100 text-green-800 rounded-md">
+                                {user.subfield.name}
+                              </span>
+                            )}
                         </div>
                       </td>
                     )}
-
-
-
 
                     {/* Actions */}
                     <td className="px-6 py-4 text-sm font-medium">
