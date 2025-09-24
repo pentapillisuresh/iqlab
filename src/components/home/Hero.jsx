@@ -5,14 +5,11 @@ import "./Hero.css";
 
 const gridSize = 5; // 5x5 grid
 
-// Educational/Career guidance banner data based on the image
 const bannerData = [
   {
     id: 1,
     image: "./images/Jungle.jpg",
     animationType: "randomScatter",
-    // title: "Turning aspirations into action with expert guidance and purpose-driven clarity.",
-    // subtitle: "Navigating Dreams with Direction",
     buttonText: "Start Your Journey"
   },
   {
@@ -23,7 +20,6 @@ const bannerData = [
     subtitle: "Professional Career Assessment & Guidance",
     buttonText: "Explore Programs"
   },
- 
   {
     id: 3,
     image: "./images/medical.jpg",
@@ -42,8 +38,8 @@ const Hero = () => {
 
   const animateSlide = (slideIndex) => {
     if (isAnimating) return;
-    
     setIsAnimating(true);
+
     const tiles = containerRefs.current[slideIndex]?.querySelectorAll(".tile");
     const textElements = textRefs.current[slideIndex];
     const animationType = bannerData[slideIndex]?.animationType;
@@ -53,7 +49,6 @@ const Hero = () => {
       return;
     }
 
-    // Reset text elements
     if (textElements) {
       gsap.set(textElements.querySelectorAll(".hero-title, .hero-subtitle, .hero-button"), {
         opacity: 0,
@@ -89,7 +84,6 @@ const Hero = () => {
         break;
     }
 
-    // Animate tiles
     gsap.fromTo(
       tiles,
       fromVars,
@@ -99,38 +93,22 @@ const Hero = () => {
         x: 0,
         y: 0,
         rotation: 0,
-        stagger: {
-          each: 0.03,
-          from: "random",
-        },
+        stagger: { each: 0.03, from: "random" },
         duration: 1,
         ease: "power3.out",
         onComplete: () => {
-          // Animate text after tiles complete
           if (textElements) {
             const tl = gsap.timeline();
-            
             tl.to(textElements.querySelector(".hero-title"), {
-              opacity: 1,
-              y: 0,
-              duration: 0.8,
-              ease: "power3.out"
+              opacity: 1, y: 0, duration: 0.8, ease: "power3.out"
             })
             .to(textElements.querySelector(".hero-subtitle"), {
-              opacity: 1,
-              y: 0,
-              duration: 0.6,
-              ease: "power3.out"
+              opacity: 1, y: 0, duration: 0.6, ease: "power3.out"
             }, "-=0.4")
             .to(textElements.querySelector(".hero-button"), {
-              opacity: 1,
-              y: 0,
-              duration: 0.5,
-              ease: "back.out(1.7)"
+              opacity: 1, y: 0, duration: 0.5, ease: "back.out(1.7)"
             }, "-=0.3")
-            .set({}, {
-              onComplete: () => setIsAnimating(false)
-            });
+            .set({}, { onComplete: () => setIsAnimating(false) });
           } else {
             setIsAnimating(false);
           }
@@ -159,7 +137,7 @@ const Hero = () => {
   };
 
   return (
-    <div className="carousel-container">
+    <div className="carousel-container relative h-64 md:h-80 lg:h-96 w-full">
       {/* Indicators */}
       <div className="carousel-indicators">
         {bannerData.map((_, index) => (
@@ -187,7 +165,6 @@ const Hero = () => {
               {[...Array(gridSize * gridSize)].map((_, i) => {
                 const row = Math.floor(i / gridSize);
                 const col = i % gridSize;
-
                 return (
                   <div
                     key={i}
@@ -202,32 +179,15 @@ const Hero = () => {
               })}
             </div>
 
-            {/* Text Overlay - Centered */}
-            <div 
+            {/* Text Overlay */}
+            <div
               className="hero-text-overlay"
               ref={(el) => (textRefs.current[index] = el)}
-              style={{
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                right: 0,
-                bottom: 0,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                zIndex: 10
-              }}
             >
-              <div className="hero-content" style={{
-                textAlign: 'center',
-                maxWidth: '800px',
-                padding: '0 20px'
-              }}>
+              <div className="hero-content">
                 <p className="hero-subtitle">{item.subtitle}</p>
                 <h1 className="hero-title">{item.title}</h1>
-                {/* <button className="hero-button">
-                  {item.buttonText}
-                </button> */}
+                {/* <button className="hero-button">{item.buttonText}</button> */}
               </div>
             </div>
           </div>
@@ -235,22 +195,12 @@ const Hero = () => {
       </div>
 
       {/* Navigation Controls */}
-      <button
-        className="carousel-control prev"
-        type="button"
-        onClick={prevSlide}
-        disabled={isAnimating}
-      >
+      <button className="carousel-control prev" type="button" onClick={prevSlide} disabled={isAnimating}>
         <ChevronLeft size={24} />
         <span className="sr-only">Previous</span>
       </button>
       
-      <button
-        className="carousel-control next"
-        type="button"
-        onClick={nextSlide}
-        disabled={isAnimating}
-      >
+      <button className="carousel-control next" type="button" onClick={nextSlide} disabled={isAnimating}>
         <ChevronRight size={24} />
         <span className="sr-only">Next</span>
       </button>

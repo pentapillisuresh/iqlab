@@ -19,7 +19,7 @@ const CareerDashboard = () => {
     const fetchCareerUsers = async () => {
       try {
         const headers = getAuthHeaders();
-        const response = await axios.get("https://iqlab-backend.onrender.com/api/career/users", {
+        const response = await axios.get("http://localhost:5000/api/career/users", {
           headers,
         });
         setCareerUsers(response.data || []);

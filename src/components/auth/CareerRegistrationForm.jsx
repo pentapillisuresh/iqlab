@@ -20,7 +20,7 @@ const CareerRegistrationForm = ({ onSuccess }) => {
     setLoading(true);
     try {
       const res = await axios.post(
-        "https://iqlab-backend.onrender.com/api/career/register", // ✅ direct backend call
+        "http://localhost:5000/api/career/register", // ✅ direct backend call
         formData
       );
 

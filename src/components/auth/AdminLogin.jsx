@@ -160,14 +160,14 @@ const AdminLogin = () => {
                   {loading ? 'Authenticating...' : 'Access Admin Portal'}
                 </button>
 
-                <div className="text-center">
+                {/* <div className="text-center">
                   <Link 
                     to="/login" 
                     className="text-sm text-gray-300 hover:text-white transition-colors"
                   >
                     ← Back to Student Login
                   </Link>
-                </div>
+                </div> */}
               </form>
             </div>
 

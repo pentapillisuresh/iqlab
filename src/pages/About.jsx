@@ -1,6 +1,8 @@
 import React from 'react';
+import { motion } from 'framer-motion';
+import { Link } from "react-router-dom"; // ⬅️ add this at the top
+
 import {
-  ShieldCheckIcon,
   AcademicCapIcon,
   UsersIcon,
   ClipboardDocumentCheckIcon,
@@ -22,30 +24,30 @@ import {
 const Services = () => {
   const services = [
     {
-      title: "ISO Certification Consultancy",
-      icon: <ShieldCheckIcon className="h-10 w-10 text-blue-600" />,
+      title: "ISO Trainings & Certification Programs",
+      icon: <AcademicCapIcon className="h-10 w-10 text-purple-600" />,
       description:
-        "We assist companies in obtaining ISO certifications like ISO 9001 and ISO 13485 with robust systems and expert guidance.",
+        "Empowering businesses and professionals with specialized ISO training programs and certifications for excellence in quality and compliance.",
       subServices: [
         {
-          name: "SOP Preparation",
-          description: "Develop Standard Operating Procedures tailored to your business processes.",
-          icon: <ClipboardDocumentCheckIcon className="h-6 w-6 text-indigo-500" />,
+          name: "ISO Awareness Training",
+          description: "Workshops to introduce the fundamentals of ISO standards.",
+          icon: <LightBulbIcon className="h-6 w-6 text-yellow-500" />,
         },
         {
-          name: "Quality Manuals",
-          description: "Prepare comprehensive quality manuals to meet international standards.",
-          icon: <DocumentTextIcon className="h-6 w-6 text-green-600" />,
+          name: "Internal Auditor Training",
+          description: "Hands-on training to prepare internal auditors for compliance checks.",
+          icon: <ClipboardDocumentCheckIcon className="h-6 w-6 text-indigo-600" />,
         },
         {
-          name: "Internal Audits",
-          description: "Conduct systematic audits to identify gaps and ensure compliance.",
-          icon: <MagnifyingGlassCircleIcon className="h-6 w-6 text-blue-500" />,
+          name: "Lead Auditor Training",
+          description: "Advanced programs to certify professionals as ISO Lead Auditors.",
+          icon: <PresentationChartLineIcon className="h-6 w-6 text-blue-600" />,
         },
         {
-          name: "QMS Implementation",
-          description: "Implement a robust Quality Management System to streamline operations.",
-          icon: <Cog6ToothIcon className="h-6 w-6 text-orange-500" />,
+          name: "Customized Corporate Training",
+          description: "Tailored training modules to align with your organization's goals.",
+          icon: <UserCircleIcon className="h-6 w-6 text-green-600" />,
         },
       ],
     },
@@ -140,7 +142,7 @@ const Services = () => {
           <div className="text-center text-white px-4">
             <h1 className="text-3xl md:text-4xl font-bold mb-3">Our Services</h1>
             <p className="max-w-2xl mx-auto text-base md:text-lg opacity-90">
-              Excellence in ISO Consultancy, Career Counselling, and Club Management – 
+              Excellence in ISO Trainings, Career Counselling, and Club Management – 
               empowering businesses and individuals to grow and succeed.
             </p>
           </div>
@@ -151,8 +153,12 @@ const Services = () => {
       <div className="py-12 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
         <div className="space-y-10">
           {services.map((service, index) => (
-            <div
+            <motion.div
               key={index}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: index * 0.2 }}
+              viewport={{ once: true }}
               className="bg-white rounded-xl shadow-lg p-6 border border-gray-100"
             >
               <div className="flex items-center space-x-4 mb-4">
@@ -167,8 +173,12 @@ const Services = () => {
               {service.subServices && (
                 <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
                   {service.subServices.map((sub, subIndex) => (
-                    <div
+                    <motion.div
                       key={subIndex}
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.5, delay: subIndex * 0.15 }}
+                      viewport={{ once: true }}
                       className="p-4 border border-gray-200 rounded-lg hover:shadow-md transition"
                     >
                       <div className="flex items-center space-x-2 mb-2">
@@ -178,20 +188,53 @@ const Services = () => {
                         </h3>
                       </div>
                       <p className="text-xs text-gray-600">{sub.description}</p>
-                    </div>
+                    </motion.div>
                   ))}
                 </div>
               )}
-            </div>
+            </motion.div>
           ))}
         </div>
 
-        {/* CTA Section */}
-        <div className="mt-12 text-center">
-          <button className="bg-gradient-to-r from-blue-600 to-teal-500 text-white px-8 py-3 rounded-full font-semibold hover:opacity-90 transform hover:scale-105 transition">
-            Get in Touch
-          </button>
+        {/* Vision & Mission Section */}
+        <div className="mt-20 grid md:grid-cols-2 gap-10 items-center">
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="bg-white shadow-lg rounded-xl p-8 border border-gray-100"
+          >
+            <h2 className="text-2xl font-bold text-blue-700 mb-4">Our Vision</h2>
+            <p className="text-gray-600 leading-relaxed">
+              To be the most trusted partner in ISO Training, Consultancy, and Growth Solutions,
+              enabling organizations worldwide to achieve operational excellence and sustainable success.
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="bg-white shadow-lg rounded-xl p-8 border border-gray-100"
+          >
+            <h2 className="text-2xl font-bold text-teal-700 mb-4">Our Mission</h2>
+            <p className="text-gray-600 leading-relaxed">
+              To deliver high-quality ISO training and professional development services that empower businesses,
+              enhance compliance, and drive continuous improvement with affordability and efficiency.
+            </p>
+          </motion.div>
         </div>
+
+        {/* CTA Section */}
+       <div className="mt-16 text-center">
+  <Link to="/contact">
+    <button className="bg-gradient-to-r from-blue-600 to-teal-500 text-white px-8 py-3 rounded-full font-semibold hover:opacity-90 transform hover:scale-105 transition">
+      Get in Touch
+    </button>
+  </Link>
+</div>
       </div>
     </div>
   );

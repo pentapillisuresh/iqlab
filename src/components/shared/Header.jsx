@@ -1,12 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
-import { User, LogOut, Shield } from "lucide-react";
+import { User, LogOut, Shield, ChevronDown } from "lucide-react";
 
 const Header = () => {
   const { user, logout, isAuthenticated, isAdmin } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
+  const [loginOpen, setLoginOpen] = useState(false);
 
   const handleLogout = () => {
     logout();
@@ -43,22 +44,25 @@ const Header = () => {
           </Link>
 
           {/* Navigation */}
-          <nav className="flex items-center space-x-6">
+          <nav className="flex items-center space-x-6 relative">
             {/* Public Nav Links */}
             {navLinks.map((link) => (
               <Link
                 key={link.path}
                 to={link.path}
-                className={`relative text-sm font-medium transition-colors group ${location.pathname === link.path
+                className={`relative text-sm font-medium transition-colors group ${
+                  location.pathname === link.path
                     ? "text-blue-600"
                     : "text-gray-700 hover:text-blue-600"
-                  }`}
+                }`}
               >
                 {link.label}
-                {/* Animated underline */}
                 <span
-                  className={`absolute left-0 -bottom-1 h-0.5 bg-blue-600 transition-all duration-300 ${location.pathname === link.path ? "w-full" : "w-0 group-hover:w-full"
-                    }`}
+                  className={`absolute left-0 -bottom-1 h-0.5 bg-blue-600 transition-all duration-300 ${
+                    location.pathname === link.path
+                      ? "w-full"
+                      : "w-0 group-hover:w-full"
+                  }`}
                 ></span>
               </Link>
             ))}
@@ -69,10 +73,11 @@ const Header = () => {
                 {isAdmin ? (
                   <Link
                     to="/admin/dashboard"
-                    className={`flex items-center space-x-1 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${isAdminRoute
+                    className={`flex items-center space-x-1 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${
+                      isAdminRoute
                         ? "bg-blue-100 text-blue-700"
                         : "text-gray-700 hover:bg-blue-600 hover:text-white"
-                      }`}
+                    }`}
                   >
                     <Shield className="h-4 w-4" />
                     <span>Admin Panel</span>
@@ -103,18 +108,46 @@ const Header = () => {
               </>
             ) : (
               <div className="flex items-center space-x-5">
-                <Link
-                  to="/login"
-                  className="text-sm font-medium text-gray-700 hover:text-blue-600 transition-all duration-300"
-                >
-                  Student Login
-                </Link>
-                <Link
-                  to="/admin/login"
-                  className="text-sm font-medium text-gray-700 hover:text-blue-600 transition-all duration-300"
-                >
-                  Admin Login
-                </Link>
+                {/* Login Dropdown */}
+                <div className="relative">
+                  <button
+                    onClick={() => setLoginOpen(!loginOpen)}
+                    className="flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 transition-all duration-300"
+                  >
+                    Login
+                    <ChevronDown
+                      className={`h-4 w-4 ml-1 transition-transform duration-300 ${
+                        loginOpen ? "rotate-180" : ""
+                      }`}
+                    />
+                  </button>
+
+                  {/* Dropdown menu */}
+                  <div
+                    className={`absolute right-0 mt-2 w-40 bg-white rounded-lg shadow-lg border transform transition-all duration-300 origin-top ${
+                      loginOpen
+                        ? "scale-100 opacity-100"
+                        : "scale-95 opacity-0 pointer-events-none"
+                    }`}
+                  >
+                    <Link
+                      to="/login"
+                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50"
+                      onClick={() => setLoginOpen(false)}
+                    >
+                      Client Login
+                    </Link>
+                    <Link
+                      to="/admin/login"
+                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50"
+                      onClick={() => setLoginOpen(false)}
+                    >
+                      Admin Login
+                    </Link>
+                  </div>
+                </div>
+
+                {/* Register */}
                 <Link
                   to="/register"
                   className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-2 rounded-full text-sm font-semibold shadow-md hover:from-blue-700 hover:to-indigo-700 hover:scale-105 transform transition-all duration-300"

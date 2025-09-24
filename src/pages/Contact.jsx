@@ -229,46 +229,29 @@ const Contact = () => {
                 ))}
               </div>
             </div>
+          </div>
+        </div>
 
-            {/* Community Stats */}
-            <div className="bg-gradient-to-r from-orange-500 to-pink-500 rounded-xl p-4 text-white">
-              <h3 className="text-sm font-bold mb-2">Join Our Growing Community</h3>
-              <div className="grid grid-cols-2 gap-2 text-center">
-                <div>
-                  <div className="text-lg font-bold">500+</div>
-                  <div className="text-xs opacity-90">Active Members</div>
-                </div>
-                <div>
-                  <div className="text-lg font-bold">10+</div>
-                  <div className="text-xs opacity-90">Active Clubs</div>
-                </div>
-                <div>
-                  <div className="text-lg font-bold">50+</div>
-                  <div className="text-xs opacity-90">Events Monthly</div>
-                </div>
-                <div>
-                  <div className="text-lg font-bold">2+</div>
-                  <div className="text-xs opacity-90">Years Strong</div>
-                </div>
+        {/* Community Stats - moved below */}
+        <div className="mt-10">
+          <div className="bg-gradient-to-r from-orange-500 to-pink-500 rounded-xl p-6 text-white text-center shadow-lg">
+            <h3 className="text-lg font-bold mb-4">Join Our Growing Community</h3>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+              <div>
+                <div className="text-2xl font-bold">500+</div>
+                <div className="text-sm opacity-90">Active Members</div>
               </div>
-            </div>
-
-            {/* Quick Links */}
-            <div className="bg-white rounded-xl shadow-lg p-4">
-              <h3 className="text-sm font-bold text-gray-900 mb-2">Quick Actions</h3>
-              <div className="space-y-2">
-                <button className="w-full text-left p-2 bg-gray-50 hover:bg-blue-50 rounded-lg transition-colors duration-200 text-xs">
-                  📅 Schedule a Community Tour
-                </button>
-                <button className="w-full text-left p-2 bg-gray-50 hover:bg-blue-50 rounded-lg transition-colors duration-200 text-xs">
-                  🎯 Find Your Perfect Club
-                </button>
-                <button className="w-full text-left p-2 bg-gray-50 hover:bg-blue-50 rounded-lg transition-colors duration-200 text-xs">
-                  👥 Speak with a Community Guide
-                </button>
-                <button className="w-full text-left p-2 bg-gray-50 hover:bg-blue-50 rounded-lg transition-colors duration-200 text-xs">
-                  📱 Join Our WhatsApp Group
-                </button>
+              <div>
+                <div className="text-2xl font-bold">10+</div>
+                <div className="text-sm opacity-90">Active Clubs</div>
+              </div>
+              <div>
+                <div className="text-2xl font-bold">50+</div>
+                <div className="text-sm opacity-90">Events Monthly</div>
+              </div>
+              <div>
+                <div className="text-2xl font-bold">2+</div>
+                <div className="text-sm opacity-90">Years Strong</div>
               </div>
             </div>
           </div>

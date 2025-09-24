@@ -1,5 +1,5 @@
 import React from 'react';
-import { Mail, Phone, MapPin, ArrowRight, Clock, ExternalLink } from 'lucide-react';
+import { Mail, Phone, MapPin, ArrowRight, ExternalLink } from 'lucide-react';
 
 const Footer = () => {
   const quickLinks = [
@@ -11,17 +11,11 @@ const Footer = () => {
   ];
 
   const contactInfo = [
-    { icon: MapPin, text: '10-01-1,nad vizag', href: '#' },
-    { icon: Phone, text: '987654321', href: 'tel:9313723204' },
-    { icon: Mail, text: 'iqlabs@yahoo.co.in', href: 'mailto:dhamanisumit@yahoo.co.in' },
-    { icon: ExternalLink, text: 'Iqlabs.com', href: 'https://lakshyaarthi.com' },
-  ];
-
-  const openingHours = [
-    { day: 'Monday - Thursday', time: '06:30 AM - 08:30 AM' },
-    { day: 'Friday', time: '06:30 AM - 08:30 AM' },
-    { day: 'Saturday', time: '06:30 AM - 08:30 AM' },
-    { day: 'Sunday', time: 'Closed' },
+    { icon: MapPin, text: '10-01-1, NAD Vizag', href: '#' },
+   { icon: Phone, text: '9949999381', href: 'tel:9949999381' },
+  { icon: Phone, text: '9949999481', href: 'tel:9949999481' },
+    { icon: Mail, text: 'helloiqlabs@gmail.com', href: 'mailto:helloiqlabs@gmail.com' },
+    { icon: ExternalLink, text: 'Iqlabs.com', href: 'https://iqlabsco.in' },
   ];
 
   return (
@@ -46,7 +40,7 @@ const Footer = () => {
 
       {/* Footer Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 lg:px-20 py-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
           
           {/* Contact Info Section */}
           <div className="group">
@@ -120,55 +114,7 @@ const Footer = () => {
               ))}
             </ul>
           </div>
-
-          {/* Opening Hours Section */}
-          <div className="transform transition-all duration-500 hover:scale-105">
-            <h4 className="text-xl font-bold mb-8 flex items-center text-white">
-              <div className="w-8 h-8 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-lg flex items-center justify-center mr-3 shadow-lg">
-                <Clock className="w-4 h-4" />
-              </div>
-              Class Timings
-            </h4>
-            <div className="space-y-4">
-              {openingHours.map((slot, index) => (
-                <div 
-                  key={index} 
-                  className="bg-white/5 backdrop-blur-sm rounded-lg p-4 border border-white/10 hover:bg-white/10 hover:border-blue-400/30 transition-all duration-300 group"
-                  style={{ animationDelay: `${index * 150}ms` }}
-                >
-                  <div className="flex justify-between items-center">
-                    <span className="font-medium text-blue-200 group-hover:text-blue-100 transition-colors duration-300">
-                      {slot.day}
-                    </span>
-                    <span className={`text-sm font-semibold px-3 py-1 rounded-full transition-all duration-300 ${
-                      slot.time === 'Closed' 
-                        ? 'bg-red-500/20 text-red-200 group-hover:bg-red-500/30' 
-                        : 'bg-green-500/20 text-green-200 group-hover:bg-green-500/30'
-                    }`}>
-                      {slot.time}
-                    </span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
         </div>
-
-        {/* Call to Action Banner */}
-        {/* <div className="mt-16 bg-gradient-to-r from-blue-600/30 to-indigo-600/30 backdrop-blur-sm rounded-2xl p-8 border border-white/10 hover:border-blue-400/30 transition-all duration-500 group">
-          <div className="text-center">
-            <h3 className="text-2xl font-bold mb-4 bg-gradient-to-r from-blue-200 to-indigo-200 bg-clip-text text-transparent">
-              Ready to Start Your Learning Journey?
-            </h3>
-            <p className="text-gray-300 mb-6 max-w-2xl mx-auto leading-relaxed">
-              Join thousands of successful students who have achieved their academic goals with our expert guidance and proven teaching methods.
-            </p>
-            <button className="bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white px-8 py-3 rounded-full font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 hover:-translate-y-1 transition-all duration-300 group-hover:animate-pulse">
-              Get Started Today
-              <ArrowRight className="w-4 h-4 ml-2 inline group-hover:translate-x-1 transition-transform duration-300" />
-            </button>
-          </div>
-        </div> */}
 
         {/* Bottom Bar */}
         <div className="border-t border-white/20 mt-16 pt-8 flex flex-col md:flex-row justify-between items-center">

@@ -121,14 +121,14 @@ const Login = () => {
               </p>
             </div>
 
-            <div className="text-center pt-4 border-t border-gray-200">
+            {/* <div className="text-center pt-4 border-t border-gray-200">
               <Link 
                 to="/admin/login" 
                 className="text-sm text-purple-600 hover:text-purple-500 font-medium"
               >
                 Admin Portal →
               </Link>
-            </div>
+            </div> */}
           </form>
         </div>
       </div>

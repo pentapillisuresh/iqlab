@@ -2,7 +2,7 @@ import React from 'react';
 import './Call.css';
 
 const Call = () => {
-  const phoneNumber = 'tel:+919100135553'; // Replace with your number
+  const phoneNumber = 'tel:+919949999381'; // Replace with your number
 
   return (
     <a href={phoneNumber} className="call-button" aria-label="Call us">

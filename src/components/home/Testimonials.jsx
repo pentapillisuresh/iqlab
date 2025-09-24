@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 const Testimonials = () => {
   const [activeIndex, setActiveIndex] = useState(0);
 
-  // Updated testimonials with Indian names + Lakshya Arthi style
+  // Updated testimonials with ISO + Club Management
   const testimonials = [
     {
       name: "Ramesh Patel",
@@ -56,6 +56,26 @@ const Testimonials = () => {
         "OCSS guided me in selecting the right overseas education path. It matched my preferences and helped me prepare better.",
       rating: 5,
     },
+    {
+      name: "Suresh Iyer",
+      role: "Business Owner",
+      company: "ISO Certification Consultancy",
+      image:
+        "https://images.pexels.com/photos/3183171/pexels-photo-3183171.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&fit=crop&crop=face",
+      quote:
+        "The ISO Consultancy team helped us achieve ISO 9001 certification smoothly. Their guidance on SOPs and internal audits improved our processes tremendously.",
+      rating: 5,
+    },
+    {
+      name: "Neha Verma",
+      role: "Club Member",
+      company: "Wildlife Survival Club",
+      image:
+        "https://images.pexels.com/photos/3225517/pexels-photo-3225517.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&fit=crop&crop=face",
+      quote:
+        "Joining the Club Management programs gave me incredible experiences in wildlife survival and team bonding. It boosted my confidence and leadership skills.",
+      rating: 5,
+    },
   ];
 
   const nextTestimonial = () => {
@@ -105,14 +125,11 @@ const Testimonials = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-12"
         >
-          {/* <span className="font-semibold text-sm mb-3 block text-blue-800">
-            Student & Parent Voices
-          </span> */}
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
             What People Say About Us
           </h2>
           <p className="text-lg max-w-3xl mx-auto text-blue-700">
-            Real experiences from the clients who discovered clarity.
+            Real experiences from students, parents, professionals, and members.
           </p>
         </motion.div>
 

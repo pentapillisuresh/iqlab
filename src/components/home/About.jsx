@@ -91,10 +91,7 @@ const About = () => {
                   experiences, and grow both personally and socially.
                   <br />
                   <br />
-                  At IQ Labs, we believe in understanding the unique needs of
-                  each client and delivering the best possible solutions.
-                  Contact us to discuss your requirements and find out how we
-                  can help you achieve your goals.
+               
                 </p>
               </div>
             </div>
