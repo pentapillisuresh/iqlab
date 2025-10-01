@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import serviceData from "../components/home/Data/ServiceData";
 import ServiceCard from "../components/ServiceCard";
 import IsoRegistrationForm from "../components/auth/IsoRegistrationForm";
@@ -7,8 +8,16 @@ import CareerRegistrationForm from "../components/auth/CareerRegistrationForm";
 import SuccessScreen from "../components/SuccessScreen";
 
 const ServiceRegistration = () => {
-  const [selectedService, setSelectedService] = useState("iso");
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const serviceFromUrl = queryParams.get("service") || "iso";
+
+  const [selectedService, setSelectedService] = useState(serviceFromUrl);
   const [registrationSuccess, setRegistrationSuccess] = useState(false);
+
+  useEffect(() => {
+    setSelectedService(serviceFromUrl);
+  }, [serviceFromUrl]);
 
   const currentService = serviceData.find(
     (service) => service.id === selectedService

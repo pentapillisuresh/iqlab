@@ -250,7 +250,7 @@ const UserTable = ({
                               <Edit className="h-4 w-4" />
                             </button>
                             <button
-                              onClick={() => onDeleteClub(user._id)}
+                              onClick={() => onDeleteClub(user._id || user.id)}
                               className="text-red-600 hover:text-red-900"
                               title="Delete"
                             >

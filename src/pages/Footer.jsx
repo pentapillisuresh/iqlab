@@ -15,7 +15,7 @@ const Footer = () => {
    { icon: Phone, text: '9949999381', href: 'tel:9949999381' },
   { icon: Phone, text: '9949999481', href: 'tel:9949999481' },
     { icon: Mail, text: 'helloiqlabs@gmail.com', href: 'mailto:helloiqlabs@gmail.com' },
-    { icon: ExternalLink, text: 'Iqlabs.com', href: 'https://iqlabsco.in' },
+    { icon: ExternalLink, text: 'iqlabs.co.in', href: 'https://iqlabs.co.in' },
   ];
 
   return (

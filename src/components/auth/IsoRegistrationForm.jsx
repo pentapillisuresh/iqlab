@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { User, Phone, Mail, MapPin, Building, FileText } from "lucide-react";
+import { User, Phone, Mail, MapPin, Building, FileText, Key } from "lucide-react";
 import { registerIsoUser } from "../../api";
 
 const IsoRegistrationForm = ({ onSuccess }) => {
@@ -9,8 +9,9 @@ const IsoRegistrationForm = ({ onSuccess }) => {
     phone: "",
     email: "",
     address: "",
-    company: "",
-    gst: "",
+    companyName: "",
+    gstNumber: "",
+    password: "",
   });
 
   const handleChange = (e) =>
@@ -19,23 +20,20 @@ const IsoRegistrationForm = ({ onSuccess }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const data = await registerIsoUser({
-        name: formData.name,
-        phone: formData.phone,
-        email: formData.email,
-        address: formData.address,
-        companyName: formData.company,
-        gstNumber: formData.gst,
-      });
+      const data = await registerIsoUser(formData); // send entire formData
+
       alert(data.message || "ISO Registration successful!");
       onSuccess?.();
+
+      // Reset form
       setFormData({
         name: "",
         phone: "",
         email: "",
         address: "",
-        company: "",
-        gst: "",
+        companyName: "",
+        gstNumber: "",
+        password: "",
       });
     } catch (err) {
       console.error(err);
@@ -99,7 +97,21 @@ const IsoRegistrationForm = ({ onSuccess }) => {
         />
       </div>
 
-      {/* Address (span full width) */}
+      {/* Password */}
+      <div className="relative">
+        <Key className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-cyan-300" />
+        <input
+          type="password"
+          name="password"
+          value={formData.password}
+          onChange={handleChange}
+          placeholder="Password"
+          className="w-full pl-10 pr-3 py-3 bg-white/10 border border-cyan-400 rounded-xl text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-cyan-400 transition-all"
+          required
+        />
+      </div>
+
+      {/* Address */}
       <div className="relative md:col-span-2">
         <MapPin className="absolute left-3 top-4 h-4 w-4 text-cyan-300" />
         <textarea
@@ -118,8 +130,8 @@ const IsoRegistrationForm = ({ onSuccess }) => {
         <Building className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-cyan-300" />
         <input
           type="text"
-          name="company"
-          value={formData.company}
+          name="companyName"
+          value={formData.companyName}
           onChange={handleChange}
           placeholder="Company Name"
           className="w-full pl-10 pr-3 py-3 bg-white/10 border border-cyan-400 rounded-xl text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-cyan-400 transition-all"
@@ -132,8 +144,8 @@ const IsoRegistrationForm = ({ onSuccess }) => {
         <FileText className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-cyan-300" />
         <input
           type="text"
-          name="gst"
-          value={formData.gst}
+          name="gstNumber"
+          value={formData.gstNumber}
           onChange={handleChange}
           placeholder="GST Number"
           className="w-full pl-10 pr-3 py-3 bg-white/10 border border-cyan-400 rounded-xl text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-cyan-400 transition-all"
@@ -141,7 +153,7 @@ const IsoRegistrationForm = ({ onSuccess }) => {
         />
       </div>
 
-      {/* Submit Button full width */}
+      {/* Submit Button */}
       <div className="md:col-span-2">
         <motion.button
           type="submit"

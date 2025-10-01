@@ -39,11 +39,7 @@ const Services = () => {
           description: "Hands-on training to prepare internal auditors for compliance checks.",
           icon: <ClipboardDocumentCheckIcon className="h-6 w-6 text-indigo-600" />,
         },
-        {
-          name: "Lead Auditor Training",
-          description: "Advanced programs to certify professionals as ISO Lead Auditors.",
-          icon: <PresentationChartLineIcon className="h-6 w-6 text-blue-600" />,
-        },
+
         {
           name: "Customized Corporate Training",
           description: "Tailored training modules to align with your organization's goals.",
@@ -58,25 +54,31 @@ const Services = () => {
         "We provide personalized career guidance to students and professionals, helping them make informed decisions for a successful future.",
       subServices: [
         {
-          name: "Aptitude Testing",
-          description: "Identify strengths and areas of interest with scientific assessments.",
+          name: "DMIT (Dermatoglyphics Multiple Intelligence Test)",
+          description:
+            "A scientific fingerprint-based test that helps uncover innate talents, learning styles, and multiple intelligences for better career and personal growth decisions.",
           icon: <UserCircleIcon className="h-6 w-6 text-purple-500" />,
         },
         {
+          name: "Psychometric Testing",
+          description:
+            "Standardized assessments to evaluate personality, aptitude, and cognitive abilities, providing insights into suitable career paths and development areas.",
+          icon: <LightBulbIcon className="h-6 w-6 text-yellow-500" />,
+        },
+
+        {
           name: "Career Mapping",
-          description: "Plan career paths aligned with individual goals and opportunities.",
-          icon: <PresentationChartLineIcon className="h-6 w-6 text-blue-600" />,
+          description:
+            "Plan career paths aligned with individual goals and opportunities.",
+          icon: <ClipboardDocumentCheckIcon className="h-6 w-6 text-indigo-600" />,
         },
         {
           name: "Personality Development",
-          description: "Build confidence and soft skills to excel in academics and career.",
-          icon: <LightBulbIcon className="h-6 w-6 text-yellow-500" />,
+          description:
+            "Build confidence and soft skills to excel in academics and career.",
+          icon: <HeartIcon className="h-6 w-6 text-pink-500" />,
         },
-        {
-          name: "Interview Training",
-          description: "Prepare for success with mock interviews and communication training.",
-          icon: <MicrophoneIcon className="h-6 w-6 text-red-500" />,
-        },
+
       ],
     },
     {
@@ -86,46 +88,31 @@ const Services = () => {
         "We organize and manage diverse clubs where individuals can explore interests, develop skills, and build meaningful connections.",
       subServices: [
         {
-          name: "Innovation Club",
-          description: "A hub for creative minds to explore new ideas and turn them into reality.",
-          icon: <LightBulbIcon className="h-6 w-6 text-yellow-500" />,
-        },
-        {
-          name: "Startup Club",
-          description: "Connect with founders, mentors, and investors to accelerate growth.",
+          name: "For Professionals & Entrepreneurs",
+          description:
+            "Clubs and initiatives that boost innovation, leadership, and entrepreneurial skills to help professionals and business leaders succeed.",
           icon: <RocketLaunchIcon className="h-6 w-6 text-blue-500" />,
         },
         {
-          name: "Public Speaking Club",
-          description: "Master the art of communication, presentations, and leadership.",
-          icon: <MicrophoneIcon className="h-6 w-6 text-red-500" />,
-        },
-        {
-          name: "Tech & Innovation Forum",
-          description: "Explore AI, blockchain, and emerging technologies with peers.",
-          icon: <ComputerDesktopIcon className="h-6 w-6 text-indigo-500" />,
-        },
-        {
-          name: "Survival Course",
-          description: "Learn outdoor survival skills including camping, climbing, and more.",
+          name: "For Adventure & Personal Growth",
+          description:
+            "Engaging programs and outdoor activities designed to build resilience, confidence, and personal growth through real-world experiences.",
           icon: <FireIcon className="h-6 w-6 text-orange-500" />,
         },
         {
-          name: "Weekend Wanderers",
-          description: "Discover Vizag’s landscapes through hikes, treks, and adventure trips.",
-          icon: <MapIcon className="h-6 w-6 text-green-500" />,
+          name: "For Community & Relationships",
+          description:
+            "Social and cultural platforms that nurture communication skills, teamwork, and meaningful connections within the community.",
+          icon: <UsersIcon className="h-6 w-6 text-purple-600" />,
         },
         {
-          name: "Foodie’s Club",
-          description: "Explore cuisines, cooking techniques, and food culture together.",
-          icon: <HeartIcon className="h-6 w-6 text-pink-500" />,
-        },
-        {
-          name: "Sports & Recreation",
-          description: "Enjoy sports and fitness activities like cricket, cycling, and volleyball.",
+          name: "Sports & Recreation Club",
+          description:
+            "Fun, fitness, and recreational activities that promote health, teamwork, and an active lifestyle through sports and group events.",
           icon: <TrophyIcon className="h-6 w-6 text-yellow-600" />,
         },
-      ],
+      ]
+
     },
   ];
 
@@ -142,12 +129,50 @@ const Services = () => {
           <div className="text-center text-white px-4">
             <h1 className="text-3xl md:text-4xl font-bold mb-3">Our Services</h1>
             <p className="max-w-2xl mx-auto text-base md:text-lg opacity-90">
-              Excellence in ISO Trainings, Career Counselling, and Club Management – 
+              Excellence in ISO Trainings, Career Counselling, and Club Management –
               empowering businesses and individuals to grow and succeed.
             </p>
           </div>
         </div>
       </div>
+
+
+      {/* Vision & Mission Section */}
+      {/* Vision & Mission Section */}
+      <div className="mt-20 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-2 gap-10 items-center">
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="bg-white shadow-lg rounded-xl p-8 border border-gray-100"
+          >
+            <h2 className="text-2xl font-bold text-blue-700 mb-4">Our Vision</h2>
+            <p className="text-gray-600 leading-relaxed">
+              To be the most trusted partner in ISO Training, Consultancy, and Growth
+              Solutions, enabling organizations worldwide to achieve operational
+              excellence and sustainable success.
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="bg-white shadow-lg rounded-xl p-8 border border-gray-100"
+          >
+            <h2 className="text-2xl font-bold text-teal-700 mb-4">Our Mission</h2>
+            <p className="text-gray-600 leading-relaxed">
+              To deliver high-quality ISO training and professional development
+              services that empower businesses, enhance compliance, and drive
+              continuous improvement with affordability and efficiency.
+            </p>
+          </motion.div>
+        </div>
+      </div>
+
 
       {/* Services Section */}
       <div className="py-12 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
@@ -196,45 +221,16 @@ const Services = () => {
           ))}
         </div>
 
-        {/* Vision & Mission Section */}
-        <div className="mt-20 grid md:grid-cols-2 gap-10 items-center">
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="bg-white shadow-lg rounded-xl p-8 border border-gray-100"
-          >
-            <h2 className="text-2xl font-bold text-blue-700 mb-4">Our Vision</h2>
-            <p className="text-gray-600 leading-relaxed">
-              To be the most trusted partner in ISO Training, Consultancy, and Growth Solutions,
-              enabling organizations worldwide to achieve operational excellence and sustainable success.
-            </p>
-          </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="bg-white shadow-lg rounded-xl p-8 border border-gray-100"
-          >
-            <h2 className="text-2xl font-bold text-teal-700 mb-4">Our Mission</h2>
-            <p className="text-gray-600 leading-relaxed">
-              To deliver high-quality ISO training and professional development services that empower businesses,
-              enhance compliance, and drive continuous improvement with affordability and efficiency.
-            </p>
-          </motion.div>
-        </div>
 
         {/* CTA Section */}
-       <div className="mt-16 text-center">
-  <Link to="/contact">
-    <button className="bg-gradient-to-r from-blue-600 to-teal-500 text-white px-8 py-3 rounded-full font-semibold hover:opacity-90 transform hover:scale-105 transition">
-      Get in Touch
-    </button>
-  </Link>
-</div>
+        <div className="mt-16 text-center">
+          <Link to="/contact">
+            <button className="bg-gradient-to-r from-blue-600 to-teal-500 text-white px-8 py-3 rounded-full font-semibold hover:opacity-90 transform hover:scale-105 transition">
+              Get in Touch
+            </button>
+          </Link>
+        </div>
       </div>
     </div>
   );

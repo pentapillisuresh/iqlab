@@ -5,7 +5,14 @@ import Sidebar from "./Sidebar";
 import UserTable from "./UserTable";
 import UserDetailsModal from "./UserDetailsModal";
 import ClubFormModal from "./ClubFormModal";
-import { fetchCategories, fetchSubcategoriesByCategory, addSubfield, fetchClubUsers } from "../../utils/clubApi";
+import { 
+  fetchCategories, 
+  fetchSubcategoriesByCategory, 
+  addSubfield, 
+  updateSubfield,
+  deleteSubfield,
+  fetchClubUsers 
+} from "../../utils/clubApi";
 
 const ClubDashboard = () => {
   const [selectedUser, setSelectedUser] = useState(null);
@@ -216,17 +223,59 @@ const ClubDashboard = () => {
     }
   };
 
-  const handleRemoveSubField = (categoryId, index) => {
-    setClubForm(prev => ({
-      ...prev,
-      categorySubfields: {
-        ...prev.categorySubfields,
-        [categoryId]: prev.categorySubfields[categoryId].filter((_, i) => i !== index)
+  const handleRemoveSubField = async (categoryId, index) => {
+    const subfield = clubForm.categorySubfields[categoryId][index];
+    
+    if (!subfield.id) {
+      // If no ID, just remove from local state (new unsaved subfield)
+      setClubForm(prev => ({
+        ...prev,
+        categorySubfields: {
+          ...prev.categorySubfields,
+          [categoryId]: prev.categorySubfields[categoryId].filter((_, i) => i !== index)
+        }
+      }));
+      return;
+    }
+
+    if (!window.confirm('Are you sure you want to delete this subfield?')) {
+      return;
+    }
+
+    try {
+      setLoading(true);
+      const token = getToken();
+      
+      if (!token) {
+        alert('Authentication required. Please login again.');
+        return;
       }
-    }));
+
+      await deleteSubfield(subfield.id, token);
+      
+      // Remove from local state
+      setClubForm(prev => ({
+        ...prev,
+        categorySubfields: {
+          ...prev.categorySubfields,
+          [categoryId]: prev.categorySubfields[categoryId].filter((_, i) => i !== index)
+        }
+      }));
+      
+      alert('Subfield deleted successfully!');
+    } catch (error) {
+      console.error('Failed to delete subfield:', error);
+      const errorMessage = error.response?.data?.message || error.message || 'Failed to delete subfield';
+      alert(`Error: ${errorMessage}`);
+    } finally {
+      setLoading(false);
+    }
   };
 
-  const handleUpdateSubField = (categoryId, index, field, value) => {
+  const handleUpdateSubField = async (categoryId, index, field, value) => {
+    const subfield = clubForm.categorySubfields[categoryId][index];
+    
+    // Update local state immediately for better UX
     setClubForm(prev => ({
       ...prev,
       categorySubfields: {
@@ -238,6 +287,30 @@ const ClubDashboard = () => {
         )
       }
     }));
+
+    // If subfield has ID, update in backend
+    if (subfield.id) {
+      try {
+        const token = getToken();
+        
+        if (!token) {
+          alert('Authentication required. Please login again.');
+          return;
+        }
+
+        const updateData = {
+          [field]: field === "amount" ? parseInt(value) || 0 : value
+        };
+
+        await updateSubfield(subfield.id, updateData, token);
+        console.log(`Subfield ${field} updated successfully`);
+      } catch (error) {
+        console.error(`Failed to update subfield ${field}:`, error);
+        // Optionally revert the change if update fails
+        // For now, we'll keep the local change and show an error
+        alert(`Failed to save ${field} change. Please try again.`);
+      }
+    }
   };
 
   const handleCategoryToggle = (categoryId) => {
@@ -267,13 +340,6 @@ const ClubDashboard = () => {
     // This would be replaced with actual API call to register club user
     const newClub = {
       id: Date.now(),
-      // name: "New Club Member",
-      // phone: "0000000000",
-      // email: "member@example.com",
-      // address: "Address not provided",
-      // registeredAt: new Date().toISOString().split("T")[0],
-      // paymentStatus: "pending",
-      // amount: 0,
       selectedCategories: Array.from(clubForm.selectedCategories),
       categorySubfields: clubForm.categorySubfields
     };

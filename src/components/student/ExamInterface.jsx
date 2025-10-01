@@ -10,548 +10,99 @@ const ExamInterface = () => {
   const [showSubmitConfirm, setShowSubmitConfirm] = useState(false);
 
   // 90 Psychometric Questions in English and Hindi
-  const mockQuestions = [
-    {
-      id: 1,
-      question: "Do you often feel nervous or anxious in social situations?",
-      questionHindi: "क्या आप अक्सर सामाजिक स्थितियों में घबराहट या चिंता महसूस करते हैं?",
-      marks: 1
-    },
-    {
-      id: 2,
-      question: "Do you prefer working alone rather than in a team?",
-      questionHindi: "क्या आप टीम में काम करने के बजाय अकेले काम करना पसंद करते हैं?",
-      marks: 1
-    },
-    {
-      id: 3,
-      question: "Do you find it easy to make decisions quickly?",
-      questionHindi: "क्या आपको जल्दी निर्णय लेना आसान लगता है?",
-      marks: 1
-    },
-    {
-      id: 4,
-      question: "Do you often worry about things that might go wrong?",
-      questionHindi: "क्या आप अक्सर उन चीजों के बारे में चिंता करते हैं जो गलत हो सकती हैं?",
-      marks: 1
-    },
-    {
-      id: 5,
-      question: "Do you enjoy taking on new challenges?",
-      questionHindi: "क्या आप नई चुनौतियों का सामना करना पसंद करते हैं?",
-      marks: 1
-    },
-    {
-      id: 6,
-      question: "Do you find it difficult to express your emotions?",
-      questionHindi: "क्या आपको अपनी भावनाओं को व्यक्त करना कठिन लगता है?",
-      marks: 1
-    },
-    {
-      id: 7,
-      question: "Do you prefer routine and predictable activities?",
-      questionHindi: "क्या आप नियमित और पूर्वानुमेय गतिविधियों को प्राथमिकता देते हैं?",
-      marks: 1
-    },
-    {
-      id: 8,
-      question: "Do you often feel overwhelmed by your responsibilities?",
-      questionHindi: "क्या आप अक्सर अपनी जिम्मेदारियों से अभिभूत महसूस करते हैं?",
-      marks: 1
-    },
-    {
-      id: 9,
-      question: "Do you enjoy meeting new people?",
-      questionHindi: "क्या आप नए लोगों से मिलना पसंद करते हैं?",
-      marks: 1
-    },
-    {
-      id: 10,
-      question: "Do you tend to procrastinate on important tasks?",
-      questionHindi: "क्या आप महत्वपूर्ण कार्यों को टालने की प्रवृत्ति रखते हैं?",
-      marks: 1
-    },
-    {
-      id: 11,
-      question: "Do you feel confident in your ability to handle stress?",
-      questionHindi: "क्या आप तनाव को संभालने की अपनी क्षमता में विश्वास महसूस करते हैं?",
-      marks: 1
-    },
-    {
-      id: 12,
-      question: "Do you prefer to plan ahead rather than be spontaneous?",
-      questionHindi: "क्या आप सहज होने के बजाय पहले से योजना बनाना पसंद करते हैं?",
-      marks: 1
-    },
-    {
-      id: 13,
-      question: "Do you find it easy to concentrate for long periods?",
-      questionHindi: "क्या आपको लंबे समय तक ध्यान केंद्रित करना आसान लगता है?",
-      marks: 1
-    },
-    {
-      id: 14,
-      question: "Do you often compare yourself to others?",
-      questionHindi: "क्या आप अक्सर दूसरों से अपनी तुलना करते हैं?",
-      marks: 1
-    },
-    {
-      id: 15,
-      question: "Do you feel comfortable speaking in front of groups?",
-      questionHindi: "क्या आप समूहों के सामने बोलने में सहज महसूस करते हैं?",
-      marks: 1
-    },
-    {
-      id: 16,
-      question: "Do you tend to be optimistic about the future?",
-      questionHindi: "क्या आप भविष्य के बारे में आशावादी होने की प्रवृत्ति रखते हैं?",
-      marks: 1
-    },
-    {
-      id: 17,
-      question: "Do you find it difficult to say no to requests?",
-      questionHindi: "क्या आपको अनुरोधों के लिए ना कहना कठिन लगता है?",
-      marks: 1
-    },
-    {
-      id: 18,
-      question: "Do you enjoy competitive activities?",
-      questionHindi: "क्या आप प्रतिस्पर्धी गतिविधियों का आनंद लेते हैं?",
-      marks: 1
-    },
-    {
-      id: 19,
-      question: "Do you often feel misunderstood by others?",
-      questionHindi: "क्या आप अक्सर दूसरों द्वारा गलत समझे जाने का अनुभव करते हैं?",
-      marks: 1
-    },
-    {
-      id: 20,
-      question: "Do you believe that hard work always pays off?",
-      questionHindi: "क्या आप मानते हैं कि कड़ी मेहनत हमेशा फल देती है?",
-      marks: 1
-    },
-    {
-      id: 21,
-      question: "Do you get easily frustrated when things don't go as planned?",
-      questionHindi: "क्या आप आसानी से निराश हो जाते हैं जब चीजें योजना के अनुसार नहीं होतीं?",
-      marks: 1
-    },
-    {
-      id: 22,
-      question: "Do you prefer working with details rather than big picture ideas?",
-      questionHindi: "क्या आप बड़े विचारों के बजाय विवरण के साथ काम करना पसंद करते हैं?",
-      marks: 1
-    },
-    {
-      id: 23,
-      question: "Do you often take initiative in group projects?",
-      questionHindi: "क्या आप अक्सर सामूहिक परियोजनाओं में पहल करते हैं?",
-      marks: 1
-    },
-    {
-      id: 24,
-      question: "Do you find it easy to forgive others when they make mistakes?",
-      questionHindi: "क्या आपको दूसरों को माफ करना आसान लगता है जब वे गलती करते हैं?",
-      marks: 1
-    },
-    {
-      id: 25,
-      question: "Do you enjoy solving complex problems?",
-      questionHindi: "क्या आप जटिल समस्याओं को हल करने में आनंद लेते हैं?",
-      marks: 1
-    },
-    {
-      id: 26,
-      question: "Do you feel comfortable with uncertainty and ambiguity?",
-      questionHindi: "क्या आप अनिश्चितता और अस्पष्टता के साथ सहज महसूस करते हैं?",
-      marks: 1
-    },
-    {
-      id: 27,
-      question: "Do you often act on your first instinct?",
-      questionHindi: "क्या आप अक्सर अपनी पहली प्रवृत्ति पर कार्य करते हैं?",
-      marks: 1
-    },
-    {
-      id: 28,
-      question: "Do you prefer structure and clear guidelines in your work?",
-      questionHindi: "क्या आप अपने काम में संरचना और स्पष्ट दिशानिर्देश पसंद करते हैं?",
-      marks: 1
-    },
-    {
-      id: 29,
-      question: "Do you find it easy to adapt to new environments?",
-      questionHindi: "क्या आपको नए वातावरण के साथ तालमेल बिठाना आसान लगता है?",
-      marks: 1
-    },
-    {
-      id: 30,
-      question: "Do you often feel energized after social interactions?",
-      questionHindi: "क्या आप अक्सर सामाजिक बातचीत के बाद ऊर्जावान महसूस करते हैं?",
-      marks: 1
-    },
-    {
-      id: 31,
-      question: "Do you tend to be critical of your own performance?",
-      questionHindi: "क्या आप अपने प्रदर्शन की आलोचना करने की प्रवृत्ति रखते हैं?",
-      marks: 1
-    },
-    {
-      id: 32,
-      question: "Do you enjoy helping others solve their problems?",
-      questionHindi: "क्या आप दूसरों की समस्याओं को हल करने में मदद करना पसंद करते हैं?",
-      marks: 1
-    },
-    {
-      id: 33,
-      question: "Do you prefer to finish tasks completely before starting new ones?",
-      questionHindi: "क्या आप नए काम शुरू करने से पहले कार्यों को पूरी तरह खत्म करना पसंद करते हैं?",
-      marks: 1
-    },
-    {
-      id: 34,
-      question: "Do you find it easy to stay motivated even when facing setbacks?",
-      questionHindi: "क्या आपको असफलताओं का सामना करते समय भी प्रेरित रहना आसान लगता है?",
-      marks: 1
-    },
-    {
-      id: 35,
-      question: "Do you enjoy brainstorming and generating new ideas?",
-      questionHindi: "क्या आप विचारमंथन और नए विचार उत्पन्न करने में आनंद लेते हैं?",
-      marks: 1
-    },
-    {
-      id: 36,
-      question: "Do you prefer to avoid conflict whenever possible?",
-      questionHindi: "क्या आप जब भी संभव हो संघर्ष से बचना पसंद करते हैं?",
-      marks: 1
-    },
-    {
-      id: 37,
-      question: "Do you often question established procedures and methods?",
-      questionHindi: "क्या आप अक्सर स्थापित प्रक्रियाओं और तरीकों पर सवाल उठाते हैं?",
-      marks: 1
-    },
-    {
-      id: 38,
-      question: "Do you find it easy to maintain long-term friendships?",
-      questionHindi: "क्या आपको लंबे समय तक दोस्ती बनाए रखना आसान लगता है?",
-      marks: 1
-    },
-    {
-      id: 39,
-      question: "Do you prefer to work at your own pace?",
-      questionHindi: "क्या आप अपनी गति से काम करना पसंद करते हैं?",
-      marks: 1
-    },
-    {
-      id: 40,
-      question: "Do you often seek feedback from others about your work?",
-      questionHindi: "क्या आप अक्सर अपने काम के बारे में दूसरों से प्रतिक्रिया मांगते हैं?",
-      marks: 1
-    },
-    {
-      id: 41,
-      question: "Do you feel comfortable taking calculated risks?",
-      questionHindi: "क्या आप गणनाशील जोखिम लेने में सहज महसूस करते हैं?",
-      marks: 1
-    },
-    {
-      id: 42,
-      question: "Do you prefer clear deadlines and time constraints?",
-      questionHindi: "क्या आप स्पष्ट समय सीमा और समय की बाधाओं को प्राथमिकता देते हैं?",
-      marks: 1
-    },
-    {
-      id: 43,
-      question: "Do you often analyze situations from multiple perspectives?",
-      questionHindi: "क्या आप अक्सर स्थितियों का विश्लेषण कई दृष्टिकोणों से करते हैं?",
-      marks: 1
-    },
-    {
-      id: 44,
-      question: "Do you enjoy receiving recognition for your achievements?",
-      questionHindi: "क्या आप अपनी उपलब्धियों के लिए मान्यता प्राप्त करने में आनंद लेते हैं?",
-      marks: 1
-    },
-    {
-      id: 45,
-      question: "Do you find it easy to stay calm under pressure?",
-      questionHindi: "क्या आपको दबाव में शांत रहना आसान लगता है?",
-      marks: 1
-    },
-    {
-      id: 46,
-      question: "Do you prefer learning through hands-on experience?",
-      questionHindi: "क्या आप व्यावहारिक अनुभव के माध्यम से सीखना पसंद करते हैं?",
-      marks: 1
-    },
-    {
-      id: 47,
-      question: "Do you often set high standards for yourself?",
-      questionHindi: "क्या आप अक्सर अपने लिए उच्च मानक निर्धारित करते हैं?",
-      marks: 1
-    },
-    {
-      id: 48,
-      question: "Do you find it easy to communicate your ideas to others?",
-      questionHindi: "क्या आपको दूसरों के साथ अपने विचार साझा करना आसान लगता है?",
-      marks: 1
-    },
-    {
-      id: 49,
-      question: "Do you enjoy exploring different solutions to problems?",
-      questionHindi: "क्या आप समस्याओं के विभिन्न समाधानों की खोज करने में आनंद लेते हैं?",
-      marks: 1
-    },
-    {
-      id: 50,
-      question: "Do you prefer to have control over your work environment?",
-      questionHindi: "क्या आप अपने कार्य वातावरण पर नियंत्रण रखना पसंद करते हैं?",
-      marks: 1
-    },
-    {
-      id: 51,
-      question: "Do you often reflect on your past experiences to learn from them?",
-      questionHindi: "क्या आप अक्सर अपने पिछले अनुभवों से सीखने के लिए उन पर विचार करते हैं?",
-      marks: 1
-    },
-    {
-      id: 52,
-      question: "Do you find it easy to trust others with important responsibilities?",
-      questionHindi: "क्या आपको महत्वपूर्ण जिम्मेदारियों के साथ दूसरों पर भरोसा करना आसान लगता है?",
-      marks: 1
-    },
-    {
-      id: 53,
-      question: "Do you prefer practical solutions over creative approaches?",
-      questionHindi: "क्या आप रचनात्मक दृष्टिकोणों की तुलना में व्यावहारिक समाधान पसंद करते हैं?",
-      marks: 1
-    },
-    {
-      id: 54,
-      question: "Do you often feel the need to prove yourself to others?",
-      questionHindi: "क्या आप अक्सर दूसरों के सामने खुद को साबित करने की आवश्यकता महसूस करते हैं?",
-      marks: 1
-    },
-    {
-      id: 55,
-      question: "Do you enjoy working on projects with tight deadlines?",
-      questionHindi: "क्या आप तंग समय सीमा वाली परियोजनाओं पर काम करने में आनंद लेते हैं?",
-      marks: 1
-    },
-    {
-      id: 56,
-      question: "Do you find it easy to empathize with others' feelings?",
-      questionHindi: "क्या आपको दूसरों की भावनाओं के साथ सहानुभूति रखना आसान लगता है?",
-      marks: 1
-    },
-    {
-      id: 57,
-      question: "Do you prefer working with facts and data over intuition?",
-      questionHindi: "क्या आप अंतर्ज्ञान की तुलना में तथ्यों और डेटा के साथ काम करना पसंद करते हैं?",
-      marks: 1
-    },
-    {
-      id: 58,
-      question: "Do you often seek approval from authority figures?",
-      questionHindi: "क्या आप अक्सर अधिकारी व्यक्तियों से अनुमोदन मांगते हैं?",
-      marks: 1
-    },
-    {
-      id: 59,
-      question: "Do you enjoy taking leadership roles in projects?",
-      questionHindi: "क्या आप परियोजनाओं में नेतृत्व की भूमिका निभाने में आनंद लेते हैं?",
-      marks: 1
-    },
-    {
-      id: 60,
-      question: "Do you find it difficult to relax and unwind?",
-      questionHindi: "क्या आपको आराम करना और तनाव मुक्त होना कठिन लगता है?",
-      marks: 1
-    },
-    {
-      id: 61,
-      question: "Do you prefer learning new skills through observation?",
-      questionHindi: "क्या आप अवलोकन के माध्यम से नए कौशल सीखना पसंद करते हैं?",
-      marks: 1
-    },
-    {
-      id: 62,
-      question: "Do you often worry about making the wrong decision?",
-      questionHindi: "क्या आप अक्सर गलत निर्णय लेने की चिंता करते हैं?",
-      marks: 1
-    },
-    {
-      id: 63,
-      question: "Do you enjoy participating in team-building activities?",
-      questionHindi: "क्या आप टीम निर्माण गतिविधियों में भाग लेने में आनंद लेते हैं?",
-      marks: 1
-    },
-    {
-      id: 64,
-      question: "Do you prefer to complete tasks methodically and systematically?",
-      questionHindi: "क्या आप कार्यों को व्यवस्थित और क्रमबद्ध तरीके से पूरा करना पसंद करते हैं?",
-      marks: 1
-    },
-    {
-      id: 65,
-      question: "Do you often find yourself daydreaming about future possibilities?",
-      questionHindi: "क्या आप अक्सर भविष्य की संभावनाओं के बारे में दिवास्वप्न देखते रहते हैं?",
-      marks: 1
-    },
-    {
-      id: 66,
-      question: "Do you find it easy to maintain work-life balance?",
-      questionHindi: "क्या आपको कार्य-जीवन संतुलन बनाए रखना आसान लगता है?",
-      marks: 1
-    },
-    {
-      id: 67,
-      question: "Do you prefer to work independently without supervision?",
-      questionHindi: "क्या आप बिना पर्यवेक्षण के स्वतंत्र रूप से काम करना पसंद करते हैं?",
-      marks: 1
-    },
-    {
-      id: 68,
-      question: "Do you often feel responsible for others' emotions and well-being?",
-      questionHindi: "क्या आप अक्सर दूसरों की भावनाओं और कल्याण के लिए जिम्मेदार महसूस करते हैं?",
-      marks: 1
-    },
-    {
-      id: 69,
-      question: "Do you enjoy experimenting with new approaches and methods?",
-      questionHindi: "क्या आप नए दृष्टिकोण और तरीकों के साथ प्रयोग करने में आनंद लेते हैं?",
-      marks: 1
-    },
-    {
-      id: 70,
-      question: "Do you find it easy to bounce back from disappointments?",
-      questionHindi: "क्या आपको निराशाओं से उबरना आसान लगता है?",
-      marks: 1
-    },
-    {
-      id: 71,
-      question: "Do you prefer to have multiple options before making decisions?",
-      questionHindi: "क्या आप निर्णय लेने से पहले कई विकल्प रखना पसंद करते हैं?",
-      marks: 1
-    },
-    {
-      id: 72,
-      question: "Do you often feel the urge to improve existing processes?",
-      questionHindi: "क्या आप अक्सर मौजूदा प्रक्रियाओं को सुधारने की इच्छा महसूस करते हैं?",
-      marks: 1
-    },
-    {
-      id: 73,
-      question: "Do you find it easy to maintain focus in noisy environments?",
-      questionHindi: "क्या आपको शोर भरे वातावरण में ध्यान केंद्रित करना आसान लगता है?",
-      marks: 1
-    },
-    {
-      id: 74,
-      question: "Do you prefer receiving detailed instructions for new tasks?",
-      questionHindi: "क्या आप नए कार्यों के लिए विस्तृत निर्देश प्राप्त करना पसंद करते हैं?",
-      marks: 1
-    },
-    {
-      id: 75,
-      question: "Do you often feel motivated by competition with others?",
-      questionHindi: "क्या आप अक्सर दूसरों के साथ प्रतिस्पर्धा से प्रेरित महसूस करते हैं?",
-      marks: 1
-    },
-    {
-      id: 76,
-      question: "Do you find it easy to express disagreement diplomatically?",
-      questionHindi: "क्या आपको असहमति को कूटनीतिक तरीके से व्यक्त करना आसान लगता है?",
-      marks: 1
-    },
-    {
-      id: 77,
-      question: "Do you prefer to research thoroughly before making commitments?",
-      questionHindi: "क्या आप प्रतिबद्धता बनाने से पहले पूरी तरह से शोध करना पसंद करते हैं?",
-      marks: 1
-    },
-    {
-      id: 78,
-      question: "Do you often feel drained after attending large social events?",
-      questionHindi: "क्या आप अक्सर बड़े सामाजिक कार्यक्रमों में भाग लेने के बाद थकावट महसूस करते हैं?",
-      marks: 1
-    },
-    {
-      id: 79,
-      question: "Do you enjoy mentoring and coaching others?",
-      questionHindi: "क्या आप दूसरों को मार्गदर्शन और कोचिंग देने में आनंद लेते हैं?",
-      marks: 1
-    },
-    {
-      id: 80,
-      question: "Do you prefer to complete one task at a time rather than multitask?",
-      questionHindi: "क्या आप एक साथ कई कार्य करने के बजाय एक समय में एक कार्य पूरा करना पसंद करते हैं?",
-      marks: 1
-    },
-    {
-      id: 81,
-      question: "Do you often feel the need to control outcomes in situations?",
-      questionHindi: "क्या आप अक्सर स्थितियों में परिणामों को नियंत्रित करने की आवश्यकता महसूस करते हैं?",
-      marks: 1
-    },
-    {
-      id: 82,
-      question: "Do you enjoy attending networking events and conferences?",
-      questionHindi: "क्या आप नेटवर्किंग इवेंट और सम्मेलनों में भाग लेने में आनंद लेते हैं?",
-      marks: 1
-    },
-    {
-      id: 83,
-      question: "Do you find it easy to prioritize tasks based on importance?",
-      questionHindi: "क्या आपको महत्व के आधार पर कार्यों को प्राथमिकता देना आसान लगता है?",
-      marks: 1
-    },
-    {
-      id: 84,
-      question: "Do you often seek new experiences and adventures?",
-      questionHindi: "क्या आप अक्सर नए अनुभव और रोमांच की तलाश करते हैं?",
-      marks: 1
-    },
-    {
-      id: 85,
-      question: "Do you prefer to work in quiet, distraction-free environments?",
-      questionHindi: "क्या आप शांत, विक्षेप-मुक्त वातावरण में काम करना पसंद करते हैं?",
-      marks: 1
-    },
-    {
-      id: 86,
-      question: "Do you often consider the long-term consequences of your actions?",
-      questionHindi: "क्या आप अक्सर अपने कार्यों के दीर्घकालिक परिणामों पर विचार करते हैं?",
-      marks: 1
-    },
-    {
-      id: 87,
-      question: "Do you find it easy to delegate responsibilities to others?",
-      questionHindi: "क्या आपको दूसरों को जिम्मेदारियां सौंपना आसान लगता है?",
-      marks: 1
-    },
-    {
-      id: 88,
-      question: "Do you prefer to follow established guidelines rather than create new ones?",
-      questionHindi: "क्या आप नए दिशानिर्देश बनाने के बजाय स्थापित दिशानिर्देशों का पालन करना पसंद करते हैं?",
-      marks: 1
-    },
-    {
-      id: 89,
-      question: "Do you often feel inspired by other people's success stories?",
-      questionHindi: "क्या आप अक्सर दूसरे लोगों की सफलता की कहानियों से प्रेरित महसूस करते हैं?",
-      marks: 1
-    },
-    {
-      id: 90,
-      question: "Do you believe that persistence is more important than talent?",
-      questionHindi: "क्या आप मानते हैं कि दृढ़ता प्रतिभा से अधिक महत्वपूर्ण है?",
-      marks: 1
-    }
-  ];
+const mockQuestions = [
+  { id: 1, question: "Do you often feel nervous or anxious in social situations?" },
+  { id: 2, question: "Do you prefer working alone rather than in a team?" },
+  { id: 3, question: "Do you find it easy to make decisions quickly?" },
+  { id: 4, question: "Do you often worry about things that might go wrong?" },
+  { id: 5, question: "Do you enjoy taking on new challenges?" },
+  { id: 6, question: "Do you find it difficult to express your emotions?" },
+  { id: 7, question: "Do you prefer routine and predictable activities?" },
+  { id: 8, question: "Do you often feel overwhelmed by your responsibilities?" },
+  { id: 9, question: "Do you enjoy meeting new people?" },
+  { id: 10, question: "Do you tend to procrastinate on important tasks?" },
+  { id: 11, question: "Do you feel confident in your ability to handle stress?" },
+  { id: 12, question: "Do you prefer to plan ahead rather than be spontaneous?" },
+  { id: 13, question: "Do you find it easy to concentrate for long periods?" },
+  { id: 14, question: "Do you often compare yourself to others?" },
+  { id: 15, question: "Do you feel comfortable speaking in front of groups?" },
+  { id: 16, question: "Do you tend to be optimistic about the future?" },
+  { id: 17, question: "Do you find it difficult to say no to requests?" },
+  { id: 18, question: "Do you enjoy competitive activities?" },
+  { id: 19, question: "Do you often feel misunderstood by others?" },
+  { id: 20, question: "Do you believe that hard work always pays off?" },
+  { id: 21, question: "Do you get easily frustrated when things don't go as planned?" },
+  { id: 22, question: "Do you prefer working with details rather than big picture ideas?" },
+  { id: 23, question: "Do you often take initiative in group projects?" },
+  { id: 24, question: "Do you find it easy to forgive others when they make mistakes?" },
+  { id: 25, question: "Do you enjoy solving complex problems?" },
+  { id: 26, question: "Do you feel comfortable with uncertainty and ambiguity?" },
+  { id: 27, question: "Do you often act on your first instinct?" },
+  { id: 28, question: "Do you prefer structure and clear guidelines in your work?" },
+  { id: 29, question: "Do you find it easy to adapt to new environments?" },
+  { id: 30, question: "Do you often feel energized after social interactions?" },
+  { id: 31, question: "Do you tend to be critical of your own performance?" },
+  { id: 32, question: "Do you enjoy helping others solve their problems?" },
+  { id: 33, question: "Do you prefer to finish tasks completely before starting new ones?" },
+  { id: 34, question: "Do you find it easy to stay motivated even when facing setbacks?" },
+  { id: 35, question: "Do you enjoy brainstorming and generating new ideas?" },
+  { id: 36, question: "Do you prefer to avoid conflict whenever possible?" },
+  { id: 37, question: "Do you often question established procedures and methods?" },
+  { id: 38, question: "Do you find it easy to maintain long-term friendships?" },
+  { id: 39, question: "Do you prefer to work at your own pace?" },
+  { id: 40, question: "Do you often seek feedback from others about your work?" },
+  { id: 41, question: "Do you feel comfortable taking calculated risks?" },
+  { id: 42, question: "Do you prefer clear deadlines and time constraints?" },
+  { id: 43, question: "Do you often analyze situations from multiple perspectives?" },
+  { id: 44, question: "Do you enjoy receiving recognition for your achievements?" },
+  { id: 45, question: "Do you find it easy to stay calm under pressure?" },
+  { id: 46, question: "Do you prefer learning through hands-on experience?" },
+  { id: 47, question: "Do you often set high standards for yourself?" },
+  { id: 48, question: "Do you find it easy to communicate your ideas to others?" },
+  { id: 49, question: "Do you enjoy exploring different solutions to problems?" },
+  { id: 50, question: "Do you prefer to have control over your work environment?" },
+  { id: 51, question: "Do you often reflect on your past experiences to learn from them?" },
+  { id: 52, question: "Do you find it easy to trust others with important responsibilities?" },
+  { id: 53, question: "Do you prefer practical solutions over creative approaches?" },
+  { id: 54, question: "Do you often feel the need to prove yourself to others?" },
+  { id: 55, question: "Do you enjoy working on projects with tight deadlines?" },
+  { id: 56, question: "Do you find it easy to empathize with others' feelings?" },
+  { id: 57, question: "Do you prefer working with facts and data over intuition?" },
+  { id: 58, question: "Do you often seek approval from authority figures?" },
+  { id: 59, question: "Do you enjoy taking leadership roles in projects?" },
+  { id: 60, question: "Do you find it difficult to relax and unwind?" },
+  { id: 61, question: "Do you prefer learning new skills through observation?" },
+  { id: 62, question: "Do you often worry about making the wrong decision?" },
+  { id: 63, question: "Do you enjoy participating in team-building activities?" },
+  { id: 64, question: "Do you prefer to complete tasks methodically and systematically?" },
+  { id: 65, question: "Do you often find yourself daydreaming about future possibilities?" },
+  { id: 66, question: "Do you find it easy to maintain work-life balance?" },
+  { id: 67, question: "Do you prefer to work independently without supervision?" },
+  { id: 68, question: "Do you often feel responsible for others' emotions and well-being?" },
+  { id: 69, question: "Do you enjoy experimenting with new approaches and methods?" },
+  { id: 70, question: "Do you find it easy to bounce back from disappointments?" },
+  { id: 71, question: "Do you prefer to have multiple options before making decisions?" },
+  { id: 72, question: "Do you often feel the urge to improve existing processes?" },
+  { id: 73, question: "Do you find it easy to maintain focus in noisy environments?" },
+  { id: 74, question: "Do you prefer receiving detailed instructions for new tasks?" },
+  { id: 75, question: "Do you often feel motivated by competition with others?" },
+  { id: 76, question: "Do you find it easy to express disagreement diplomatically?" },
+  { id: 77, question: "Do you prefer to research thoroughly before making commitments?" },
+  { id: 78, question: "Do you often feel drained after attending large social events?" },
+  { id: 79, question: "Do you enjoy mentoring and coaching others?" },
+  { id: 80, question: "Do you prefer to complete one task at a time rather than multitask?" },
+  { id: 81, question: "Do you often feel the need to control outcomes in situations?" },
+  { id: 82, question: "Do you enjoy attending networking events and conferences?" },
+  { id: 83, question: "Do you find it easy to prioritize tasks based on importance?" },
+  { id: 84, question: "Do you often seek new experiences and adventures?" },
+  { id: 85, question: "Do you prefer to work in quiet, distraction-free environments?" },
+  { id: 86, question: "Do you often consider the long-term consequences of your actions?" },
+  { id: 87, question: "Do you find it easy to delegate responsibilities to others?" },
+  { id: 88, question: "Do you prefer to follow established guidelines rather than create new ones?" },
+  { id: 89, question: "Do you often feel inspired by other people's success stories?" },
+  { id: 90, question: "Do you believe that persistence is more important than talent?" }
+];
+
 
   useEffect(() => {
     setQuestions(mockQuestions);

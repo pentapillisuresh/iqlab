@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { useAuth } from '../../contexts/AuthContext';
-import { Mail, Lock, Eye, EyeOff, BookOpen } from 'lucide-react';
+import { Mail, Lock, Eye, EyeOff, Users, Briefcase, Award } from 'lucide-react';
 
-const Login = () => {
+function Login() {
+  const [userType, setUserType] = useState('club');
   const [formData, setFormData] = useState({
     email: '',
     password: ''
@@ -11,24 +10,64 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
 
-  const { login } = useAuth();
-  const navigate = useNavigate();
+  // ⚡ IMPORTANT: Use the correct backend base URL
+  // If backend is running at 127.0.0.1:5000, replace below
+  const API_BASE_URL = 'http://localhost:5000';
+
+  const userTypes = [
+    { id: 'club', label: 'Club User', icon: Users, endpoint: '/api/clubs/login' },
+    { id: 'career', label: 'Career User', icon: Briefcase, endpoint: '/api/career/login' },
+    { id: 'iso', label: 'ISO User', icon: Award, endpoint: '/api/iso/login' }
+  ];
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     setError('');
+    setSuccess('');
 
-    const result = await login(formData.email, formData.password, 'student');
-    
-    if (result.success) {
-      navigate('/student/dashboard');
+    const selectedType = userTypes.find(type => type.id === userType);
+
+    try {
+      const response = await fetch(`${API_BASE_URL}${selectedType.endpoint}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: formData.email,
+          password: formData.password
+        }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+  setSuccess(data.message || 'Login successful!');
+  localStorage.setItem('token', data.token);
+  localStorage.setItem('user', JSON.stringify(data.user));
+  localStorage.setItem('userType', userType);
+
+  // ✅ Redirect logic based on user type
+  setTimeout(() => {
+    if (userType === 'career') {
+      window.location.href = '/student/payment/1'; // <-- mock examId or dynamic examId
     } else {
-      setError(result.error);
+      window.location.href = '/dashboard';
     }
-    
-    setLoading(false);
+  }, 1000);
+} else {
+  setError(data.message || 'Login failed. Please check your credentials.');
+}
+
+    } catch (err) {
+      console.error('Login error:', err);
+      setError('Network error. Please check backend URL or CORS config.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleChange = (e) => {
@@ -39,26 +78,55 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8">
         <div className="text-center">
-          <div className="flex justify-center">
-            <BookOpen className="h-12 w-12 text-blue-600" />
-          </div>
-          <h2 className="mt-6 text-3xl font-bold text-gray-900">Student Login</h2>
-          <p className="mt-2 text-sm text-gray-600">
-            Access your assessment dashboard
-          </p>
+          <h2 className="text-4xl font-bold text-gray-900 mb-2">Welcome Back</h2>
+          <p className="text-gray-600">Sign in to your account</p>
         </div>
 
-        <div className="bg-white rounded-xl shadow-lg p-8">
+        <div className="bg-white rounded-2xl shadow-xl p-8">
+          {/* User type selection */}
+          <div className="mb-6">
+            <label className="block text-sm font-medium text-gray-700 mb-3">
+              Select User Type
+            </label>
+            <div className="grid grid-cols-3 gap-3">
+              {userTypes.map((type) => {
+                const Icon = type.icon;
+                return (
+                  <button
+                    key={type.id}
+                    type="button"
+                    onClick={() => setUserType(type.id)}
+                    className={`flex flex-col items-center justify-center p-4 rounded-lg border-2 transition-all ${
+                      userType === type.id
+                        ? 'border-blue-600 bg-blue-50 text-blue-600'
+                        : 'border-gray-200 hover:border-gray-300 text-gray-600'
+                    }`}
+                  >
+                    <Icon className="h-6 w-6 mb-2" />
+                    <span className="text-xs font-medium text-center">{type.label}</span>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Login form */}
           <form onSubmit={handleSubmit} className="space-y-6">
             {error && (
-              <div className="bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-lg text-sm">
+              <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg text-sm">
                 {error}
               </div>
             )}
+            {success && (
+              <div className="bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded-lg text-sm">
+                {success}
+              </div>
+            )}
 
+            {/* Email */}
             <div>
               <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
                 Email Address
@@ -78,6 +146,7 @@ const Login = () => {
               </div>
             </div>
 
+            {/* Password */}
             <div>
               <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
                 Password
@@ -97,43 +166,36 @@ const Login = () => {
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
                 >
                   {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
                 </button>
               </div>
             </div>
 
+            {/* Submit */}
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-blue-600 text-white py-3 px-4 rounded-lg font-medium hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full bg-blue-600 text-white py-3 px-4 rounded-lg font-medium hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-xl"
             >
               {loading ? 'Signing In...' : 'Sign In'}
             </button>
 
-            <div className="text-center">
+            {/* Register link */}
+            <div className="text-center pt-4">
               <p className="text-sm text-gray-600">
                 Don't have an account?{' '}
-                <Link to="/register" className="font-medium text-blue-600 hover:text-blue-500">
+                <a href="/register" className="font-medium text-blue-600 hover:text-blue-500 transition-colors">
                   Register here
-                </Link>
+                </a>
               </p>
             </div>
-
-            {/* <div className="text-center pt-4 border-t border-gray-200">
-              <Link 
-                to="/admin/login" 
-                className="text-sm text-purple-600 hover:text-purple-500 font-medium"
-              >
-                Admin Portal →
-              </Link>
-            </div> */}
           </form>
         </div>
       </div>
     </div>
   );
-};
+}
 
 export default Login;

@@ -4,13 +4,14 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import "./Hero.css";
 
 const gridSize = 5; // 5x5 grid
+const autoSlideInterval = 5000; // 5 seconds
 
 const bannerData = [
   {
     id: 1,
     image: "./images/Jungle.jpg",
     animationType: "randomScatter",
-    buttonText: "Start Your Journey"
+    buttonText: "Start Your Journey",
   },
   {
     id: 2,
@@ -18,7 +19,7 @@ const bannerData = [
     animationType: "fadeIn",
     title: "Empowering students to discover their true potential and career path.",
     subtitle: "Professional Career Assessment & Guidance",
-    buttonText: "Explore Programs"
+    buttonText: "Explore Programs",
   },
   {
     id: 3,
@@ -26,8 +27,8 @@ const bannerData = [
     animationType: "zoomOut",
     title: "Transform your educational journey into meaningful career outcomes.",
     subtitle: "Purpose-Driven Educational Solutions",
-    buttonText: "Contact Us"
-  }
+    buttonText: "Contact Us",
+  },
 ];
 
 const Hero = () => {
@@ -50,10 +51,15 @@ const Hero = () => {
     }
 
     if (textElements) {
-      gsap.set(textElements.querySelectorAll(".hero-title, .hero-subtitle, .hero-button"), {
-        opacity: 0,
-        y: 50
-      });
+      gsap.set(
+        textElements.querySelectorAll(
+          ".hero-title, .hero-subtitle, .hero-button"
+        ),
+        {
+          opacity: 0,
+          y: 50,
+        }
+      );
     }
 
     let fromVars = {};
@@ -100,19 +106,36 @@ const Hero = () => {
           if (textElements) {
             const tl = gsap.timeline();
             tl.to(textElements.querySelector(".hero-title"), {
-              opacity: 1, y: 0, duration: 0.8, ease: "power3.out"
+              opacity: 1,
+              y: 0,
+              duration: 0.8,
+              ease: "power3.out",
             })
-            .to(textElements.querySelector(".hero-subtitle"), {
-              opacity: 1, y: 0, duration: 0.6, ease: "power3.out"
-            }, "-=0.4")
-            .to(textElements.querySelector(".hero-button"), {
-              opacity: 1, y: 0, duration: 0.5, ease: "back.out(1.7)"
-            }, "-=0.3")
-            .set({}, { onComplete: () => setIsAnimating(false) });
+              .to(
+                textElements.querySelector(".hero-subtitle"),
+                {
+                  opacity: 1,
+                  y: 0,
+                  duration: 0.6,
+                  ease: "power3.out",
+                },
+                "-=0.4"
+              )
+              .to(
+                textElements.querySelector(".hero-button"),
+                {
+                  opacity: 1,
+                  y: 0,
+                  duration: 0.5,
+                  ease: "back.out(1.7)",
+                },
+                "-=0.3"
+              )
+              .set({}, { onComplete: () => setIsAnimating(false) });
           } else {
             setIsAnimating(false);
           }
-        }
+        },
       }
     );
   };
@@ -120,6 +143,17 @@ const Hero = () => {
   useEffect(() => {
     animateSlide(currentSlide);
   }, [currentSlide]);
+
+  // Auto slide effect
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (!isAnimating) {
+        setCurrentSlide((prev) => (prev + 1) % bannerData.length);
+      }
+    }, autoSlideInterval);
+
+    return () => clearInterval(interval);
+  }, [isAnimating]);
 
   const nextSlide = () => {
     if (isAnimating) return;
@@ -160,7 +194,9 @@ const Hero = () => {
           >
             <div
               className="grid-image"
-              ref={(el) => (containerRefs.current[index] = el)}
+              ref={(el) => {
+                if (el) containerRefs.current[index] = el;
+              }}
             >
               {[...Array(gridSize * gridSize)].map((_, i) => {
                 const row = Math.floor(i / gridSize);
@@ -171,7 +207,9 @@ const Hero = () => {
                     className="tile"
                     style={{
                       backgroundImage: `url(${item.image})`,
-                      backgroundPosition: `${(col * 100) / (gridSize - 1)}% ${(row * 100) / (gridSize - 1)}%`,
+                      backgroundPosition: `${(col * 100) / (gridSize - 1)}% ${
+                        (row * 100) / (gridSize - 1)
+                      }%`,
                       backgroundSize: `${gridSize * 100}% ${gridSize * 100}%`,
                     }}
                   />
@@ -182,7 +220,9 @@ const Hero = () => {
             {/* Text Overlay */}
             <div
               className="hero-text-overlay"
-              ref={(el) => (textRefs.current[index] = el)}
+              ref={(el) => {
+                if (el) textRefs.current[index] = el;
+              }}
             >
               <div className="hero-content">
                 <p className="hero-subtitle">{item.subtitle}</p>
@@ -195,12 +235,22 @@ const Hero = () => {
       </div>
 
       {/* Navigation Controls */}
-      <button className="carousel-control prev" type="button" onClick={prevSlide} disabled={isAnimating}>
+      <button
+        className="carousel-control prev"
+        type="button"
+        onClick={prevSlide}
+        disabled={isAnimating}
+      >
         <ChevronLeft size={24} />
         <span className="sr-only">Previous</span>
       </button>
-      
-      <button className="carousel-control next" type="button" onClick={nextSlide} disabled={isAnimating}>
+
+      <button
+        className="carousel-control next"
+        type="button"
+        onClick={nextSlide}
+        disabled={isAnimating}
+      >
         <ChevronRight size={24} />
         <span className="sr-only">Next</span>
       </button>

@@ -31,6 +31,7 @@ import Call from './pages/Call';
 import Footer from './pages/Footer';
 import About from './pages/About';
 import Contact from './pages/Contact';
+import ScrollToTop from "./components/ScrollToTop";
 
 function App() {
   return (
@@ -41,6 +42,7 @@ function App() {
         <AuthProvider>
           <AssessmentProvider>
             <Router>
+               <ScrollToTop />
               <div className="min-h-screen bg-gray-50">
                 <Header />
                 <main className="pt-16">

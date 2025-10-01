@@ -47,7 +47,7 @@ const Contact = () => {
     {
       icon: <EnvelopeIcon className="h-6 w-6" />,
       title: "Email",
-      details: ["hello@iqlabs.com", "support@iqlabs.com"],
+      details: ["hello@iqlabs.com"],
       action: "Drop us a line"
     },
     {
@@ -98,6 +98,33 @@ const Contact = () => {
           </div>
         </div>
       </div>
+<div className="mt-10 px-4 sm:px-6 lg:px-8">
+  <div className="max-w-6xl mx-auto">
+    <div className="bg-gradient-to-r from-orange-500 to-pink-500 rounded-xl p-6 md:p-10 text-white text-center shadow-lg">
+      <h3 className="text-lg md:text-xl font-bold mb-6">Join Our Growing Community</h3>
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <div>
+          <div className="text-2xl md:text-3xl font-bold">500+</div>
+          <div className="text-sm md:text-base opacity-90">Active Members</div>
+        </div>
+        <div>
+          <div className="text-2xl md:text-3xl font-bold">10+</div>
+          <div className="text-sm md:text-base opacity-90">Active Clubs</div>
+        </div>
+        <div>
+          <div className="text-2xl md:text-3xl font-bold">50+</div>
+          <div className="text-sm md:text-base opacity-90">Events Monthly</div>
+        </div>
+        <div>
+          <div className="text-2xl md:text-3xl font-bold">2+</div>
+          <div className="text-sm md:text-base opacity-90">Years Strong</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      
 
       {/* Content Section */}
       <div className="py-8 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
@@ -158,7 +185,7 @@ const Contact = () => {
                     placeholder="+91 98765 43210"
                   />
                 </div>
-                <div>
+                {/* <div>
                   <label htmlFor="interest" className="block text-sm font-medium text-gray-700 mb-1">
                     Area of Interest
                   </label>
@@ -174,7 +201,7 @@ const Contact = () => {
                       <option key={index} value={interest}>{interest}</option>
                     ))}
                   </select>
-                </div>
+                </div> */}
               </div>
 
               <div>
@@ -233,29 +260,7 @@ const Contact = () => {
         </div>
 
         {/* Community Stats - moved below */}
-        <div className="mt-10">
-          <div className="bg-gradient-to-r from-orange-500 to-pink-500 rounded-xl p-6 text-white text-center shadow-lg">
-            <h3 className="text-lg font-bold mb-4">Join Our Growing Community</h3>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-              <div>
-                <div className="text-2xl font-bold">500+</div>
-                <div className="text-sm opacity-90">Active Members</div>
-              </div>
-              <div>
-                <div className="text-2xl font-bold">10+</div>
-                <div className="text-sm opacity-90">Active Clubs</div>
-              </div>
-              <div>
-                <div className="text-2xl font-bold">50+</div>
-                <div className="text-sm opacity-90">Events Monthly</div>
-              </div>
-              <div>
-                <div className="text-2xl font-bold">2+</div>
-                <div className="text-sm opacity-90">Years Strong</div>
-              </div>
-            </div>
-          </div>
-        </div>
+       
       </div>
     </div>
   );

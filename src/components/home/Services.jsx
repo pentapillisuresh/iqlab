@@ -97,25 +97,26 @@ const Services = () => {
 
                   {/* Register Button (sticks to bottom) */}
                   <div className="mt-auto">
-                    <Link
-                      to="/register"
-                      className="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-full font-semibold hover:shadow-lg transition-all duration-300 transform hover:scale-105 group/link"
-                    >
-                      REGISTER
-                      <svg
-                        className="w-4 h-4 ml-2 group-hover/link:translate-x-1 transition-transform"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M17 8l4 4m0 0l-4 4m4-4H3"
-                        />
-                      </svg>
-                    </Link>
+                  <Link
+  to={`/register?service=${service.id}`}
+  className="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-full font-semibold hover:shadow-lg transition-all duration-300 transform hover:scale-105 group/link"
+>
+  REGISTER
+  <svg
+    className="w-4 h-4 ml-2 group-hover/link:translate-x-1 transition-transform"
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d="M17 8l4 4m0 0l-4 4m4-4H3"
+    />
+  </svg>
+</Link>
+
                   </div>
                 </div>
               </div>
