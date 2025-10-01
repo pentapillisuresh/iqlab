@@ -22,7 +22,7 @@ const CareerRegistrationForm = ({ onSuccess }) => {
     setLoading(true);
     try {
       const res = await axios.post(
-        "http://localhost:5000/api/career/register",
+        "https://iqlabs-server.onrender.com/api/career/register",
         formData
       );
 

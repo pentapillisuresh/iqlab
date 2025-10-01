@@ -181,7 +181,7 @@ const ClubFormModal = ({
                                 </button>
                               </div>
                             </div>
-                            
+
                             {/* Show current/preview image */}
                             {(subField.image || subField.imagePreview) && (
                               <div className="mt-2">
@@ -189,7 +189,7 @@ const ClubFormModal = ({
                                   src={
                                     subField.imagePreview ||
                                     (typeof subField.image === "string"
-                                      ? `http://localhost:5000${subField.image}`
+                                      ? `https://iqlabs-server.onrender.com${subField.image}`
                                       : URL.createObjectURL(subField.image))
                                   }
                                   alt={subField.name}
@@ -197,7 +197,7 @@ const ClubFormModal = ({
                                 />
                               </div>
                             )}
-                            
+
                             {/* Visual indicator for existing subfields */}
                             {subField.id && (
                               <div className="mt-2 text-xs text-gray-500 flex items-center">

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'http://localhost:5000/api/clubs';
+const API_BASE_URL = 'https://iqlabs-server.onrender.com/api/clubs';
 
 // ✅ Get all categories
 export const fetchCategories = async () => {

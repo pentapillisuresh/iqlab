@@ -20,7 +20,7 @@ const ClubRegistrationForm = ({ onSuccess }) => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/clubs/categories");
+        const res = await fetch("https://iqlabs-server.onrender.com/api/clubs/categories");
         const data = await res.json();
         setCategories(data);
       } catch (err) {
@@ -39,7 +39,7 @@ const ClubRegistrationForm = ({ onSuccess }) => {
       setLoadingSubs(true);
       try {
         const res = await fetch(
-          `http://localhost:5000/api/clubs/subcategories?categoryId=${formData.categoryId}`
+          `https://iqlabs-server.onrender.com/api/clubs/subcategories?categoryId=${formData.categoryId}`
         );
         const data = await res.json();
         setSubCategories(data);
@@ -59,7 +59,7 @@ const ClubRegistrationForm = ({ onSuccess }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch("http://localhost:5000/api/clubs/register", {
+      const res = await fetch("https://iqlabs-server.onrender.com/api/clubs/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
@@ -199,9 +199,8 @@ const ClubRegistrationForm = ({ onSuccess }) => {
             name="subCategoryId"
             value={formData.subCategoryId}
             onChange={handleChange}
-            className={`w-full pl-10 pr-8 py-3 bg-white/10 border border-cyan-400 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-cyan-400 transition-all appearance-none ${
-              subCategories.length === 0 ? "opacity-50 cursor-not-allowed" : ""
-            }`}
+            className={`w-full pl-10 pr-8 py-3 bg-white/10 border border-cyan-400 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-cyan-400 transition-all appearance-none ${subCategories.length === 0 ? "opacity-50 cursor-not-allowed" : ""
+              }`}
             disabled={subCategories.length === 0}
             required={subCategories.length > 0}
           >
@@ -227,7 +226,7 @@ const ClubRegistrationForm = ({ onSuccess }) => {
                 <p className="font-bold text-cyan-200">₹{s.amount}</p>
                 {s.image && (
                   <img
-                    src={`http://localhost:5000${s.image}`}
+                    src={`https://iqlabs-server.onrender.com${s.image}`}
                     alt={s.name}
                     className="w-full h-40 object-cover rounded-md"
                   />

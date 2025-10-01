@@ -14,7 +14,7 @@ function Login() {
 
   // ⚡ IMPORTANT: Use the correct backend base URL
   // If backend is running at 127.0.0.1:5000, replace below
-  const API_BASE_URL = 'http://localhost:5000';
+  const API_BASE_URL = 'https://iqlabs-server.onrender.com';
 
   const userTypes = [
     { id: 'club', label: 'Club User', icon: Users, endpoint: '/api/clubs/login' },
@@ -45,22 +45,22 @@ function Login() {
       const data = await response.json();
 
       if (response.ok) {
-  setSuccess(data.message || 'Login successful!');
-  localStorage.setItem('token', data.token);
-  localStorage.setItem('user', JSON.stringify(data.user));
-  localStorage.setItem('userType', userType);
+        setSuccess(data.message || 'Login successful!');
+        localStorage.setItem('token', data.token);
+        localStorage.setItem('user', JSON.stringify(data.user));
+        localStorage.setItem('userType', userType);
 
-  // ✅ Redirect logic based on user type
-  setTimeout(() => {
-    if (userType === 'career') {
-      window.location.href = '/student/payment/1'; // <-- mock examId or dynamic examId
-    } else {
-      window.location.href = '/dashboard';
-    }
-  }, 1000);
-} else {
-  setError(data.message || 'Login failed. Please check your credentials.');
-}
+        // ✅ Redirect logic based on user type
+        setTimeout(() => {
+          if (userType === 'career') {
+            window.location.href = '/student/payment/1'; // <-- mock examId or dynamic examId
+          } else {
+            window.location.href = '/dashboard';
+          }
+        }, 1000);
+      } else {
+        setError(data.message || 'Login failed. Please check your credentials.');
+      }
 
     } catch (err) {
       console.error('Login error:', err);
@@ -99,11 +99,10 @@ function Login() {
                     key={type.id}
                     type="button"
                     onClick={() => setUserType(type.id)}
-                    className={`flex flex-col items-center justify-center p-4 rounded-lg border-2 transition-all ${
-                      userType === type.id
+                    className={`flex flex-col items-center justify-center p-4 rounded-lg border-2 transition-all ${userType === type.id
                         ? 'border-blue-600 bg-blue-50 text-blue-600'
                         : 'border-gray-200 hover:border-gray-300 text-gray-600'
-                    }`}
+                      }`}
                   >
                     <Icon className="h-6 w-6 mb-2" />
                     <span className="text-xs font-medium text-center">{type.label}</span>
